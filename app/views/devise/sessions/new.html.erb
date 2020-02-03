@@ -1,8 +1,6 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { class: 'box'} ) do |f| %>
-  <div id="flashes">
-    <p class="is-success"><%= notice %></p>
-    <p class="is-danger"><%= alert %></p>
-  </div>
+
+  <%= render partial: 'shared/flashes' %>
 
   <div class='field'>
     <%= f.label :Email, class: 'label'%>
@@ -13,7 +11,7 @@
       <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input', placeholder: 'e.g. han.solo@gmail.com' %>
     </div>
   </div>
-  
+
   <div class='field'>
     <%= f.label :Password, class: 'label' %>
     <div class='control has-icons-left'>

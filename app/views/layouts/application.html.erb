@@ -15,10 +15,7 @@
 
   <body>
     <%= render partial: 'shared/navigation' %>
-    <div id="flashes">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
+    <%= render partial: 'shared/flashes' %>
     <%= yield %>
   </body>
   <%= render partial: 'shared/footer' %>
