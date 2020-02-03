@@ -1,29 +1,51 @@
-<h2>Sign up</h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {class: 'box'}) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h1 class="title">Sign up</h1>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= render partial: 'shared/flashes' %>
+
+  <div class='field'>
+    <%= f.label :Email, class: 'label'%>
+    <div class='control has-icons-left'>
+      <span class='icon is-small is-left'>
+        <i class='fa fa-envelope'></i>
+      </span>
+      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input', placeholder: 'e.g. han.solo@gmail.com' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class='field'>
+    <%= f.label :Password, class: 'label' %>
+    <div class='control has-icons-left'>
+      <span class='icon is-small is-left'>
+        <i class='fa fa-lock'></i>
+      </span>
+      <%= f.password_field :password, autocomplete: 'new-password', class: 'input', required:'true' %>
+    </div>
+    <p class="help">
+      <% if @minimum_password_length %>
+
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+    </p>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class='field'>
+    <%= f.label :password_confirmation, class: 'label' %>
+    <div class='control has-icons-left'>
+      <span class='icon is-small is-left'>
+        <i class='fa fa-lock'></i>
+      </span>
+      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'input', required:'true' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class='field'>
+    <%= f.submit "Sign up", class: 'button is-success' %>
   </div>
+
+  <div class='is-vcentered'>
+    <%= render "devise/shared/links" %>
+  </div>
+
 <% end %>
-
-<%= render "devise/shared/links" %>

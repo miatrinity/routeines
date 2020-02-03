@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Routeines</title>
+    <title>Routines</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,9 +14,17 @@
   </head>
 
   <body>
-    <%= render partial: 'shared/navigation' %>
-    <%= render partial: 'shared/flashes' %>
-    <%= yield %>
+    <section class='hero is-fullheight has-index-bg-image'>
+      <div class='hero-body'>
+        <div class='container'>
+          <div class='columns is-centered'>
+            <div class='column is-5-tablet is-4-desktop is-3-widescreen'>
+            <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
-  <%= render partial: 'shared/footer' %>
 </html>
+
