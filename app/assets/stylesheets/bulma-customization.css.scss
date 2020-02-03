@@ -1,0 +1,31 @@
+.has-index-bg-image {
+  background: url("bg-initial.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.is-cianish {
+  color: #5edada;
+}
+
+.card {
+  height: 100%;
+}
+
+.image.is-256x256 {
+  width: 256px;
+}
+
+.has-margin-20 {
+  margin: 20px;
+}
+
+.has-margin-30 {
+  margin: 30px;
+}
+
+.has-margin-50 {
+  margin: 50px;
+}
