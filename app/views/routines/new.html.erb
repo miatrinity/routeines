@@ -1,0 +1,30 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <nav class="breadcrumb">
+        <ul>
+          <li>
+            <a href="#">Routines</a>
+          </li>
+          <li class="is-active">
+            <a href="#">New Routine</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="column is-8-tablet is-6-desktop is-6-widescreen">
+        <%= render 'form', routine: @routine %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const fileInput = document.querySelector('#routine_avatar');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('.file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>
