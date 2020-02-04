@@ -12,24 +12,23 @@ class RoutinesController < ApplicationController
     @routine = Routine.new
   end
 
-
   def create
     build_routine
     save_routine('Routine was successfully created.') or render :new
   end
 
-=begin
   def edit
-    load_identity
-    build_identity
+    load_routine
+    build_routine
   end
 
   def update
-    load_identity
-    build_identity
-    save_identity('Identity was successfully updated.') or render :edit
+    load_routine
+    build_routine
+    save_routine('Routine was successfully updated.') or render :edit
   end
 
+=begin
   def destroy
     load_identity
     @identity.destroy
@@ -43,9 +42,9 @@ class RoutinesController < ApplicationController
     @routines ||= routine_scope.to_a
   end
 
-  # def load_identity
-  #   @identity ||= identity_scope.find(params[:id])
-  # end
+  def load_routine
+    @routine ||= routine_scope.find(params[:id])
+  end
 
   def build_routine
     @routine ||= routine_scope.build

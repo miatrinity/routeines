@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :routines, only: %i[index new create]
+  resources :routines, only: %i[index new create edit update]
 end
