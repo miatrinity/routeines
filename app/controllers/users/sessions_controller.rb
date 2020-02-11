@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Users
+  # :nodoc:
   class SessionsController < Devise::SessionsController
     layout 'sign_in'
     # before_action :configure_sign_in_params, only: [:create]

@@ -1,0 +1,18 @@
+<div class="column is-6-tablet is-4-desktop is-3-widescreen" id=<%= dom_id(routine) %> >
+  <article class="box has-text-centered card">
+    <div class="box">
+      <%= image_tag routine.avatar %>
+    </div>
+    <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
+      <%= routine.title %>
+      <%# <%= link_to routine.title, routine_facets_path(routine) %>
+    </p>
+    <br>
+    <div class="content is-small">
+      <%= link_to "Edit", edit_routine_path(routine) %>
+      <span>·</span>
+      <%= link_to "Delete", routine, method: :delete, data: { confirm: "Are you sure you want to remove #{routine.title} from Routines? "} %>
+      <p></p>
+    </div>
+  </article>
+</div>

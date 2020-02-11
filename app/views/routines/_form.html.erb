@@ -1,0 +1,31 @@
+<%= form_with model: routine, local: true do |form| %>
+  <% if routine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(routine.errors.count, "error") %> prohibited this routine from being saved:</h2>
+
+      <ul>
+        <% routine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="field">
+      <%= form.label :title, class: 'label' %>
+      <div class="control">
+        <%= form.text_field :title, class:'input is-large', placeholder: "e.g. Miracle Morning", required: true  %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "avatar_upload", form: form, routine: routine %>
+
+  <div class="field">
+    <div class="buttons">
+      <%= form.submit class: 'button is-medium is-success' %>
+      <%= link_to 'Cancel', routines_path, class: 'button is-medium is-light' %>
+    </div>
+  </div>
+<% end %>
