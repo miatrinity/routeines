@@ -11,7 +11,7 @@
     <div class="content is-small">
       <%= link_to "Edit", edit_routine_path(routine) %>
       <span>·</span>
-      <%# <%= link_to "Delete", identity, method: :delete, data: { confirm: "Are you sure you want to remove #{identity.name} from WhatsNext? "} %>
+      <%= link_to "Delete", routine, method: :delete, data: { confirm: "Are you sure you want to remove #{routine.title} from Routines? "} %>
       <p></p>
     </div>
   </article>
