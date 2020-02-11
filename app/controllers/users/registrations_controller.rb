@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Users
+  # :nodoc:
   class RegistrationsController < Devise::RegistrationsController
     layout 'sign_in'
     # before_action :configure_sign_up_params, only: [:create]

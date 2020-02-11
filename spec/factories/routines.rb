@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :routine do
-    title { "MyString" }
+    title { 'MyRoutine' }
     sequence(:user) { association(:user) }
 
     before(:create) do |routine|

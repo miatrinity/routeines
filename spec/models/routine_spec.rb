@@ -15,4 +15,3 @@ RSpec.describe Routine, type: :model do
     it { should belong_to(:user) }
   end
 end
-

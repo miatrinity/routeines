@@ -27,15 +27,13 @@ class RoutinesController < ApplicationController
     build_routine
     save_routine('Routine was successfully updated.') or render :edit
   end
+  # def destroy
+  #   load_identity
+  #   @identity.destroy
 
-=begin
-  def destroy
-    load_identity
-    @identity.destroy
+  #   redirect_to identities_path, notice: 'Identity was successfully deleted.'
+  # end
 
-    redirect_to identities_path, notice: 'Identity was successfully deleted.'
-  end
-=end
   private
 
   def load_routines
