@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <nav class="breadcrumb">
+        <ul>
+          <li>
+            <a href="#">Steps</a>
+          </li>
+          <li class="is-active">
+            <a href="#">Edit Step</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="column is-8-tablet is-6-desktop is-6-widescreen">
+        <%= render 'form', routine: @routine, step: @step %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :step do
     title { 'Step 1' }
+    sequence(:routine) { association(:routine) }
   end
 end

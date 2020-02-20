@@ -16,10 +16,27 @@ class StepsController < ApplicationController
     save_step('Step was successfully created.') or render :new
   end
 
+  def edit
+    load_routine
+    load_step
+    build_step
+  end
+
+  def update
+    load_routine
+    load_step
+    build_step
+    save_step('Step was successfully updated.') or render :edit
+  end
+
   private
 
   def load_steps
     @steps ||= step_scope.to_a
+  end
+
+  def load_step
+    @step ||= step_scope.find(params[:id])
   end
 
   def load_routine
