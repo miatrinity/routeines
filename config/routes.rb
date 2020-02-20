@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :routines, except: %i[show]
+  resources :routines, except: %i[show] do
+    resources :steps, only: %i[index new create]
+  end
 end

@@ -1,0 +1,29 @@
+<%= form_with model: [routine, step], local: true do |form| %>
+  <% if step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+        <% step.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="field">
+      <%= form.label :title, class: 'label' %>
+      <div class="control">
+        <%= form.text_field :title, class:'input is-large', placeholder: "e.g. Wash your teeth", required: true  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="buttons">
+      <%= form.submit class: 'button is-medium is-success' %>
+      <%= link_to 'Cancel', routine_steps_path(routine), class: 'button is-medium is-light' %>
+    </div>
+  </div>
+<% end %>

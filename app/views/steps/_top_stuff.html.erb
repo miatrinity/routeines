@@ -1,0 +1,42 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <p id="step-count" class="subtitle is-5">
+        <strong><%= steps.size %></strong> <%= "step".pluralize %>
+      </p>
+    </div>
+
+    <p class="level-item">
+      <%= link_to 'New', url_for(action: 'new'), class: "button is-success" %>
+    </p>
+
+    <div class="level-item is-hidden-tablet-only">
+      <div class="field has-addons">
+        <p class="control">
+          <input class="input" type="text" placeholder="Step name, keyword…">
+        </p>
+        <p class="control">
+          <button class="button">
+            Search
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <div class="level-item">
+      Order by
+    </div>
+    <div class="level-item">
+      <div class="select">
+        <select>
+          <option>Name</option>
+          <option>Date Last Opened</option>
+          <option>Date Created</option>
+          <option>Date Modified</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
