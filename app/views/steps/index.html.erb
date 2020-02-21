@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <h1 class="title "><%= @routine.title %> - Steps</h1>
+
+      <%= render "secondary_navigation", steps: @steps %>
+
+      <div>
+        <%= render @steps, routine: @routine %>
+      </div>
+    </div>
+  </div>
+</section>
