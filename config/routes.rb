@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   }
 
   resources :routines, except: %i[show] do
-    resources :steps, only: %i[index new create edit update]
+    resources :steps, except: %i[show]
   end
 end

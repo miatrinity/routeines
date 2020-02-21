@@ -17,16 +17,21 @@ class StepsController < ApplicationController
   end
 
   def edit
-    load_routine
     load_step
     build_step
   end
 
   def update
-    load_routine
     load_step
     build_step
     save_step('Step was successfully updated.') or render :edit
+  end
+
+  def destroy
+    load_step
+    @step.destroy
+
+    redirect_to routine_steps_path(@routine), notice: 'Step was successfully deleted.'
   end
 
   private
