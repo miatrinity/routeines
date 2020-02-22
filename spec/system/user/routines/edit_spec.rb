@@ -25,4 +25,14 @@ RSpec.describe 'User edits routine', type: :system do
     expect(page).to have_text("I'm an edited routine")
     expect(page).to have_css('img[src*=edited_routine]', count: 1)
   end
+
+  it 'Routine breadcrumb leads to routines index page' do
+    routine = create(:routine)
+
+    login_as routine.user
+
+    visit edit_routine_path(routine)
+
+    expect(page).to have_css("a[href='#{routines_path}']", count: 1, text: 'Routines')
+  end
 end
