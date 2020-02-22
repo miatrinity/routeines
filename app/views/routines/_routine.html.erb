@@ -1,11 +1,12 @@
 <div class="column is-6-tablet is-4-desktop is-3-widescreen" id=<%= dom_id(routine) %> >
   <article class="box has-text-centered card">
     <div class="box">
-      <%= image_tag routine.avatar %>
+      <%= link_to routine_steps_path(routine) do %>
+        <%= image_tag routine.avatar, id: "#{dom_id(routine)}-avatar" %>
+      <% end %>
     </div>
     <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-      <%= routine.title %>
-      <%# <%= link_to routine.title, routine_facets_path(routine) %>
+      <%= link_to routine.title, routine_steps_path(routine), id: "#{dom_id(routine)}-title" %>
     </p>
     <br>
     <div class="content is-small">

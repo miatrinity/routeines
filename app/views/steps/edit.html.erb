@@ -4,12 +4,17 @@
       <nav class="breadcrumb">
         <ul>
           <li>
-            <a href="#">Steps</a>
+            <%= link_to "Routines", routines_path %>
+          </li>
+          <li>
+            <%= link_to "#{@routine.title} - Steps", routine_steps_path(@routine) %>
           </li>
           <li class="is-active">
-            <a href="#">Edit Step</a>
+            <a href="#">Edit</a>
           </li>
+
         </ul>
+
       </nav>
 
       <div class="column is-8-tablet is-6-desktop is-6-widescreen">
