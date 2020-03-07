@@ -8,6 +8,7 @@ class Step < ApplicationRecord
   validates_presence_of :title
 
   after_save  :maintain_linked_list_after_insertion!
+  before_destroy :maintain_linked_list_before_deletion!
 
   def to_linked_list
     raise 'Step is not first! Can not generate linked list' unless first
@@ -33,7 +34,7 @@ class Step < ApplicationRecord
     previous.update_column(:next_id, self.id)
   end
 
-  def maintain_linked_list_during_deletion!
+  def maintain_linked_list_before_deletion!
     if first
       return if self.next.blank?
 

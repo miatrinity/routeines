@@ -61,8 +61,6 @@ RSpec.describe Step, type: :model do
       first_before_deletion = lone_step.first
       next_before_deletion = lone_step.next
 
-      lone_step.maintain_linked_list_during_deletion!
-
       first_during_deletion = lone_step.first
       next_during_deletion = lone_step.next
 
@@ -77,7 +75,7 @@ RSpec.describe Step, type: :model do
       red_step = create(:step, title: 'Red Step', routine: routine)
       green_step = create(:step, title: 'Green Step', routine: routine)
 
-      red_step.reload.maintain_linked_list_during_deletion!
+      red_step.reload.destroy
 
       expect(green_step.reload.first).to be_truthy
     end
@@ -88,13 +86,9 @@ RSpec.describe Step, type: :model do
       green_step = create(:step, title: 'Green Step', routine: routine)
       blue_step = create(:step, title: 'Blue Step', routine: routine)
 
-      reload_steps!(red_step, green_step)
+      green_step.reload.destroy
 
-      green_step.maintain_linked_list_during_deletion!
-
-      red_step.reload
-
-      expect(red_step.first).to be_truthy
+      expect(red_step.reload.first).to be_truthy
       expect(red_step.next).to eql(blue_step)
     end
 
@@ -103,13 +97,9 @@ RSpec.describe Step, type: :model do
       red_step = create(:step, title: 'Red Step', routine: routine)
       green_step = create(:step, title: 'Green Step', routine: routine)
 
-      red_step.reload
+      green_step.reload.destroy
 
-      green_step.maintain_linked_list_during_deletion!
-
-      red_step.reload
-
-      expect(red_step.first).to be_truthy
+      expect(red_step.reload.first).to be_truthy
       expect(red_step.next).to be_nil
     end
   end
