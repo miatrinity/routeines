@@ -25,10 +25,10 @@ RSpec.describe 'User routine title or avatar', type: :system do
   def click_on_title_or_avatar(routine)
     title_or_avatar_id = [
       "//a[@id='routine_#{routine.id}-title']",
-      "//a[child::img[@id='routine_#{routine.id}-avatar']"
+      "//a[child::img[@id='routine_#{routine.id}-avatar']]"
     ].sample
 
     puts "TEsting with #{title_or_avatar_id}"
-    find(title_or_avatar_id).click
+    find(:xpath, title_or_avatar_id).click
   end
 end

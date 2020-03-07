@@ -11,5 +11,17 @@ FactoryBot.define do
         filename: 'routine.png', content_type: 'image/png'
       )
     end
+
+    trait :with_steps do
+      transient do
+        steps_count { 3 }
+      end
+
+      after(:create) do |routine, evaluator|
+        evaluator.steps_count.times do
+          create(:step, routine: routine)
+        end
+      end
+    end
   end
 end

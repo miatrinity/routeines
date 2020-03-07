@@ -28,7 +28,7 @@ class StepsController < ApplicationController
   end
 
   def destroy
-    load_step
+    set_up_destroy
     @step.destroy
 
     redirect_to routine_steps_path(@routine), notice: 'Step was successfully deleted.'
@@ -37,11 +37,17 @@ class StepsController < ApplicationController
   private
 
   def load_steps
-    @steps ||= step_scope.to_a
+    load_routine
+    @steps ||= @routine.to_linked_list
   end
 
   def load_step
     @step ||= step_scope.find(params[:id])
+  end
+
+  def set_up_destroy
+    load_step
+    @step.maintain_linked_list_during_deletion!
   end
 
   def load_routine
@@ -63,7 +69,9 @@ class StepsController < ApplicationController
   end
 
   def save_step(notice)
-    redirect_to(routine_steps_path(@routine), notice: notice) if @step.save
+    return unless @step.save
+
+    redirect_to(routine_steps_path(@routine), notice: notice)
   end
 
   def step_params

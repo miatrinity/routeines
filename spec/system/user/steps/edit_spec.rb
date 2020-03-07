@@ -8,7 +8,7 @@ RSpec.describe 'User edits step', type: :system do
   end
 
   it 'successfully' do
-    step = create(:step)
+    step = create(:step, first: true)
 
     login_as step.routine.user
 

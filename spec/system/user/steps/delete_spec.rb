@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'User deletes step', type: :system do
   it 'successfully' do
-    step = create(:step)
+    step = create(:step, first: true)
 
     login_as step.routine.user
 

@@ -7,10 +7,10 @@ class RoutineFlow < ApplicationRecord
   belongs_to :routine
   has_many :flow_steps, dependent: :destroy
 
-  #def start
-    # copy steps from routine
-    # first step = active
-  #end
+  def start(routine)
+    clone_steps_of routine
+    activate_first_flow_step
+  end
 
   #def next
     # check if last step
@@ -24,4 +24,16 @@ class RoutineFlow < ApplicationRecord
     # current step = complete
     # routine flow = complete
   #end
+
+  private
+
+  def clone_steps_of(routine)
+    routine.steps.each do |step|
+      flow_steps << FlowStep.create(step_id: step.id)
+    end
+  end
+
+  def activate_first_flow_step
+    flow_steps.first.active!
+  end
 end
