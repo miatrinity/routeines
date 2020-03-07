@@ -23,5 +23,23 @@ FactoryBot.define do
         end
       end
     end
+
+    trait :with_red_green do
+      after(:create) do |routine, evaluator|
+        red_step = create(:step, title: 'Red Step', routine: routine)
+        create(:step, title: 'Green Step', routine: routine)
+        red_step.reload
+      end
+    end
+
+    trait :with_red_green_blue do
+      after(:create) do |routine, evaluator|
+        red_step   = create(:step, title: 'Red Step', routine: routine)
+        green_step = create(:step, title: 'Green Step', routine: routine)
+        create(:step, title: 'Blue Step', routine: routine)
+        red_step.reload
+        green_step.reload
+      end
+    end
   end
 end

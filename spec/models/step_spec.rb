@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Step, type: :model do
-  def reload_steps!(*steps)
-    steps.each { |step| step.reload }
-  end
-
   describe '#title' do
     it { should validate_presence_of(:title) }
   end
@@ -23,12 +19,7 @@ RSpec.describe Step, type: :model do
 
   describe '#to_linked_list' do
     it 'should return an array of steps in the desired order described by the linked list' do
-      routine = create(:routine)
-      red_step = create(:step, title: 'Red Step', routine: routine)
-      green_step = create(:step, title: 'Green Step', routine: routine)
-      blue_step = create(:step, title: 'Blue Step', routine: routine)
-
-      reload_steps!(red_step, green_step)
+      red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
 
       expect(red_step.to_linked_list.map{ |step| step.title }).to eql(['Red Step', 'Green Step', 'Blue Step'])
       expect(blue_step.next).to be_nil
@@ -44,13 +35,11 @@ RSpec.describe Step, type: :model do
     end
 
     it 'should set #next = self to the tail of the original list' do
-      routine = create(:routine)
-      red_step = create(:step, title: 'Red Step', routine: routine)
-      green_step = create(:step, title: 'Green Step', routine: routine)
+      red_step, green_step = create(:routine, :with_red_green).steps
 
       expect(red_step.first).to be_truthy
       expect(green_step.first).to be_falsy
-      expect(red_step.reload.next).to eql(green_step)
+      expect(red_step.next).to eql(green_step)
     end
   end
 
@@ -70,34 +59,26 @@ RSpec.describe Step, type: :model do
 
 
     it 'when removing first step, its child is becoming the first step' do
-      routine = create(:routine)
+      red_step, green_step = create(:routine, :with_red_green).steps
 
-      red_step = create(:step, title: 'Red Step', routine: routine)
-      green_step = create(:step, title: 'Green Step', routine: routine)
-
-      red_step.reload.destroy
+      red_step.destroy
 
       expect(green_step.reload.first).to be_truthy
     end
 
     it 'when removing middle step, next pointer is being maintained correctly' do
-      routine = create(:routine)
-      red_step = create(:step, title: 'Red Step', routine: routine)
-      green_step = create(:step, title: 'Green Step', routine: routine)
-      blue_step = create(:step, title: 'Blue Step', routine: routine)
+      red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
 
-      green_step.reload.destroy
+      green_step.destroy
 
       expect(red_step.reload.first).to be_truthy
       expect(red_step.next).to eql(blue_step)
     end
 
     it 'when removing last step, remove next pointer from the new last step' do
-      routine = create(:routine)
-      red_step = create(:step, title: 'Red Step', routine: routine)
-      green_step = create(:step, title: 'Green Step', routine: routine)
+      red_step, green_step = create(:routine, :with_red_green).steps
 
-      green_step.reload.destroy
+      green_step.destroy
 
       expect(red_step.reload.first).to be_truthy
       expect(red_step.next).to be_nil
