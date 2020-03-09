@@ -7,7 +7,7 @@ class Step < ApplicationRecord
 
   validates_presence_of :title
 
-  after_save  :maintain_linked_list_after_insertion!
+  after_save :maintain_linked_list_after_insertion!
   before_destroy :maintain_linked_list_before_deletion!
 
   def to_linked_list
@@ -28,14 +28,7 @@ class Step < ApplicationRecord
   private
 
   def maintain_linked_list_after_insertion!
-    if routine.steps.one?
-      self.update_column(:first, true)
-      return
-    end
-
-    previous = routine.steps.where.not(id: self.id).find_by(next_id: nil)
-
-    previous.update_column(:next_id, self.id)
+    set_first_step! or update_tail!
   end
 
   def maintain_linked_list_before_deletion!
@@ -54,5 +47,21 @@ class Step < ApplicationRecord
 
   def first_step
     @_first_step ||= routine.steps.find_by(first: true)
+  end
+
+  def set_first_step!
+    update_column(:first, true) if first_step_of_routine?
+  end
+
+  def first_step_of_routine?
+    routine.steps.one?
+  end
+
+  def update_tail!
+    tail_before_insertion.update_column(:next_id, id)
+  end
+
+  def tail_before_insertion
+    routine.steps.where.not(id: id).find_by(next_id: nil)
   end
 end
