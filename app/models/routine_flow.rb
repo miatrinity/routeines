@@ -28,7 +28,7 @@ class RoutineFlow < ApplicationRecord
   private
 
   def clone_steps_of(routine)
-    routine.steps.each do |step|
+    routine.to_chain_of_steps.each do |step|
       flow_steps << FlowStep.create(step_id: step.id)
     end
   end

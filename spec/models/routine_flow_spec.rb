@@ -40,10 +40,6 @@ RSpec.describe RoutineFlow, type: :model do
 
       expect(routine_flow.flow_steps.first.status).to eql('active')
     end
-
-    it "preserves order of steps" do
-
-    end
   end
 
   describe 'associations' do
@@ -58,8 +54,6 @@ RSpec.describe RoutineFlow, type: :model do
   end
 
   def step_titles_for(routine)
-    routine.steps.map(&:title)
+    routine.to_chain_of_steps.map(&:title)
   end
-
-
 end

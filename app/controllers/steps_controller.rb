@@ -38,7 +38,7 @@ class StepsController < ApplicationController
 
   def load_steps
     load_routine
-    @steps ||= @routine.to_linked_list
+    @steps ||= @routine.to_chain_of_steps
   end
 
   def load_step
