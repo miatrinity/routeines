@@ -17,17 +17,17 @@ RSpec.describe Step, type: :model do
     end
   end
 
-  describe '#to_linked_list' do
-    it 'should return an array of steps in the desired order described by the linked list' do
+  describe '#to_chain' do
+    it 'should return an array of steps in the desired order described by the chain' do
       red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
 
-      expect(red_step.to_linked_list.map{ |step| step.title }).to eql(['Red Step', 'Green Step', 'Blue Step'])
+      expect(red_step.to_chain.map{ |step| step.title }).to eql(['Red Step', 'Green Step', 'Blue Step'])
       expect(blue_step.next).to be_nil
       expect(green_step.first).to be_falsy
     end
   end
 
-  describe '#maintain_linked_list_before_insertion!' do
+  describe 'Creation of step' do
     it '#first should be true when routine had no steps' do
       step = create(:step)
 
@@ -43,7 +43,7 @@ RSpec.describe Step, type: :model do
     end
   end
 
-  describe '#maintain_linked_list_during_deletion!' do
+  describe 'Deletion of step' do
     it 'when removing first step, its child is becoming the first step' do
       red_step, green_step = create(:routine, :with_red_green).steps
 
