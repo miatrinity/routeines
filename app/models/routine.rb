@@ -12,13 +12,16 @@ class Routine < ApplicationRecord
   validates_presence_of :title
 
   def to_linked_list
-    return Routine.none if steps.empty?
-    find_first_step.to_linked_list
+    return_empty_list_if_no_steps or build_linked_list
   end
 
   private
 
-  def find_first_step
-    steps.find_by(first: true)
+  def return_empty_list_if_no_steps
+    Step.none if steps.empty?
+  end
+
+  def build_linked_list
+    steps.first.to_linked_list
   end
 end

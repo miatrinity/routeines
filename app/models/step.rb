@@ -11,31 +11,36 @@ class Step < ApplicationRecord
   before_destroy :maintain_linked_list_before_deletion!
 
   def to_linked_list
-    return Step.none if first_step.blank?
-
-    result = [first_step]
-
-    loop do
-      current_step = result.last
-      next_step = current_step.next
-
-      return result if next_step.blank?
-
-      result << next_step
-    end
+    return_empty_list_if_no_steps or build_linked_list_from([first_step])
   end
 
   private
 
+  def return_empty_list_if_no_steps
+    Step.none if first_step.blank?
+  end
+
+  def build_linked_list_from(steps)
+    return_linked_list_of(steps) or build_linked_list_from(steps << next_step(steps))
+  end
+
+  def return_linked_list_of(steps)
+    steps if next_step(steps).blank?
+  end
+
+  def next_step(steps)
+    steps.last.next
+  end
+
   def maintain_linked_list_after_insertion!
-    set_first_step! or update_tail!
+    set_first_step! or update_last_step_after_insertion!
   end
 
   def maintain_linked_list_before_deletion!
     ignore_single_step or
-      update_first_of_multiple_steps or
-      update_middle_step or
-      update_tail
+      update_first_of_multiple_steps! or
+      update_middle_step! or
+      update_last_step_before_deletion!
   end
 
   def first_step
@@ -50,11 +55,11 @@ class Step < ApplicationRecord
     routine.steps.one?
   end
 
-  def update_tail!
-    tail_before_insertion.update_column(:next_id, id)
+  def update_last_step_after_insertion!
+    last_step_before_insertion.update_column(:next_id, id)
   end
 
-  def tail_before_insertion
+  def last_step_before_insertion
     routine.steps.where.not(id: id).find_by(next_id: nil)
   end
 
@@ -62,7 +67,7 @@ class Step < ApplicationRecord
     first && self.next.blank?
   end
 
-  def update_first_of_multiple_steps
+  def update_first_of_multiple_steps!
     self.next.update_column(:first, true) if first
   end
 
@@ -70,11 +75,11 @@ class Step < ApplicationRecord
     routine.steps.find_by(next: self)
   end
 
-  def update_middle_step
+  def update_middle_step!
     previous.update_column(:next_id, next_id) if self.next
   end
 
-  def update_tail
+  def update_last_step_before_deletion!
     previous.update_column(:next_id, nil)
   end
 end
