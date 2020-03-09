@@ -32,17 +32,10 @@ class Step < ApplicationRecord
   end
 
   def maintain_linked_list_before_deletion!
-    if first
-      return if self.next.blank?
-
-      self.next.update_column(:first, true)
-    elsif self.next
-      previous = routine.steps.find_by(next: self)
-      previous.update_column(:next_id, self.next_id)
-    else
-      previous = routine.steps.find_by(next: self)
-      previous.update_column(:next_id, nil)
-    end
+    ignore_single_step or
+      update_first_of_multiple_steps or
+      update_middle_step or
+      update_tail
   end
 
   def first_step
@@ -63,5 +56,25 @@ class Step < ApplicationRecord
 
   def tail_before_insertion
     routine.steps.where.not(id: id).find_by(next_id: nil)
+  end
+
+  def ignore_single_step
+    first && self.next.blank?
+  end
+
+  def update_first_of_multiple_steps
+    self.next.update_column(:first, true) if first
+  end
+
+  def previous
+    routine.steps.find_by(next: self)
+  end
+
+  def update_middle_step
+    previous.update_column(:next_id, next_id) if self.next
+  end
+
+  def update_tail
+    previous.update_column(:next_id, nil)
   end
 end
