@@ -44,20 +44,6 @@ RSpec.describe Step, type: :model do
   end
 
   describe '#maintain_linked_list_during_deletion!' do
-    it 'no relevant attributes of a single step are updated' do
-      lone_step = create(:step, title: 'Lone Step')
-
-      first_before_deletion = lone_step.first
-      next_before_deletion = lone_step.next
-
-      first_during_deletion = lone_step.first
-      next_during_deletion = lone_step.next
-
-      expect(first_before_deletion).to eql(first_during_deletion)
-      expect(next_before_deletion).to eql(next_during_deletion)
-    end
-
-
     it 'when removing first step, its child is becoming the first step' do
       red_step, green_step = create(:routine, :with_red_green).steps
 

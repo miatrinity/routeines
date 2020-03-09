@@ -11,25 +11,29 @@ class Step < ApplicationRecord
   before_destroy :maintain_linked_list_before_deletion!
 
   def to_linked_list
-    raise 'Step is not first! Can not generate linked list' unless first
+    return Step.none if first_step.blank?
 
-    result = [self]
+    result = [first_step]
 
     loop do
       current_step = result.last
-      return result if current_step.next.blank?
+      next_step = current_step.next
 
-      result << current_step.next
+      return result if next_step.blank?
+
+      result << next_step
     end
   end
 
+  private
+
   def maintain_linked_list_after_insertion!
-    if step_scope.one?
+    if routine.steps.one?
       self.update_column(:first, true)
       return
     end
 
-    previous = step_scope.where.not(id: self.id).find_by(next_id: nil)
+    previous = routine.steps.where.not(id: self.id).find_by(next_id: nil)
 
     previous.update_column(:next_id, self.id)
   end
@@ -40,17 +44,15 @@ class Step < ApplicationRecord
 
       self.next.update_column(:first, true)
     elsif self.next
-      previous = step_scope.find_by(next: self)
+      previous = routine.steps.find_by(next: self)
       previous.update_column(:next_id, self.next_id)
     else
-      previous = step_scope.find_by(next: self)
+      previous = routine.steps.find_by(next: self)
       previous.update_column(:next_id, nil)
     end
   end
 
-  private
-
-  def step_scope
-    routine.steps
+  def first_step
+    @_first_step ||= routine.steps.find_by(first: true)
   end
 end
