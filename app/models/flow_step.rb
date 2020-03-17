@@ -6,4 +6,6 @@ class FlowStep < ApplicationRecord
 
   belongs_to :routine_flow
   belongs_to :step
+
+  delegate :last?, to: :step
 end
