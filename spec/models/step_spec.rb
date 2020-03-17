@@ -9,6 +9,7 @@ RSpec.describe Step, type: :model do
 
   describe 'associations' do
     it { should belong_to(:routine) }
+    it { should have_many(:flow_steps) }
   end
 
   describe '#first' do
@@ -21,7 +22,7 @@ RSpec.describe Step, type: :model do
     it 'should return an array of steps in the desired order described by the chain' do
       red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
 
-      expect(red_step.to_chain.map{ |step| step.title }).to eql(['Red Step', 'Green Step', 'Blue Step'])
+      expect(red_step.to_chain.map(&:title)).to eql(['Red Step', 'Green Step', 'Blue Step'])
       expect(blue_step.next).to be_nil
       expect(green_step.first).to be_falsy
     end

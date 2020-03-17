@@ -2,7 +2,7 @@
 
 # :nodoc:
 class RoutineFlow < ApplicationRecord
-  enum status: { active: 0 }
+  enum status: { active: 0, complete: 1 }
 
   belongs_to :routine
   has_many :flow_steps, dependent: :destroy
@@ -12,18 +12,9 @@ class RoutineFlow < ApplicationRecord
     activate_first_flow_step
   end
 
-  #def next
-    # check if last step
-      # complete routine flow
-    # else
-    #   current step = complete
-    #   next step = active
-  #end
-
-  #def complete
-    # current step = complete
-    # routine flow = complete
-  #end
+  def next
+    complete or advance_to_next
+  end
 
   private
 
@@ -35,5 +26,22 @@ class RoutineFlow < ApplicationRecord
 
   def activate_first_flow_step
     flow_steps.first.active!
+  end
+
+  def current_flow_step
+    flow_steps.active.last
+  end
+
+  def next_flow_step
+    flow_steps.inactive.first
+  end
+
+  def complete
+    complete! if current_flow_step.last?
+  end
+
+  def advance_to_next
+    current_flow_step.complete!
+    next_flow_step.active!
   end
 end
