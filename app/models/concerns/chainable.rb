@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nodoc:
 module Chainable
   extend ActiveSupport::Concern
 
