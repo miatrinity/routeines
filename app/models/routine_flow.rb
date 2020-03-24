@@ -7,7 +7,7 @@ class RoutineFlow < ApplicationRecord
   belongs_to :routine
   has_many :flow_steps, dependent: :destroy
 
-  def start(routine)
+  def start
     clone_steps_of routine
     activate_first_flow_step
   end

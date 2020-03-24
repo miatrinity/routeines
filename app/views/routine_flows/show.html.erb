@@ -1,11 +1,11 @@
 <section class="section">
   <div class="columns is-mobile is-centered">
     <div class="column column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-      <h1 class="level-item title is-spaced is-marginless is-capitalized is-centered">I'm a Routine Flow</h1>
+      <h1 class="level-item title is-spaced is-marginless is-capitalized is-centered"><%= @routine.title %></h1>
 
       <div>
           <p class="subtitle is-5 level-item">
-            <%#= flow_steps.size %></strong> flow <%= "step".pluralize %>
+            <strong><%= @routine_flow.flow_steps.size %></strong> flow <%= "step".pluralize %>
           </p>
 
         <div class="buttons">
@@ -23,7 +23,7 @@
           <%= image_tag 'target.png' %>
         </div>
         <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-          <span id="flow-item-current-title">I'm your current flow item!</span>
+          <span id="flow-item-current-title"><%= @routine_flow.flow_steps.first.title %></span>
         </p>
         </br>
 
@@ -34,90 +34,7 @@
       </article>
 
       <div>
-        <div class="box flow-step-upcomming">
-          <article class="media" style="align-items: center;">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <%= image_tag 'dart.png' %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div class="level-left" style="align-items: baseline;">
-                    <p class="is-size-5">I'm just another flow item!</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="box">
-          <article class="media" style="align-items: center;">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <%= image_tag 'dart.png' %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div class="level-left" style="align-items: baseline;">
-                    <p class="is-size-5">Here I go again!</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="box">
-          <article class="media" style="align-items: center;">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <%= image_tag 'dart.png' %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div class="level-left" style="align-items: baseline;">
-                    <p class="is-size-5">I'm unstoppable!</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="box">
-          <article class="media" style="align-items: center;">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <%= image_tag 'dart.png' %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div class="level-left" style="align-items: baseline;">
-                    <p class="is-size-5">Feeling the groove of it...</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="box">
-          <article class="media" style="align-items: center;">
-            <div class="media-left">
-              <figure class="image is-32x32">
-                <%= image_tag 'dart.png' %>
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <div class="level-left" style="align-items: baseline;">
-                    <p class="is-size-5">Let's feed those llamas in pyjamas!</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
+        <%= render @routine_flow.flow_steps[1..-1] %>
       </div>
       <br>
 

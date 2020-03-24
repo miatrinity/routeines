@@ -71,7 +71,7 @@ RSpec.describe RoutineFlow, type: :model do
     routine_flow = RoutineFlow.create
     routine.routine_flows << routine_flow
 
-    routine_flow.start(routine)
+    routine_flow.start
 
     [routine, routine_flow]
   end
