@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :routines, except: %i[show] do
     resources :steps, except: %i[show]
   end
+
+  resources :routine_flows
 end
