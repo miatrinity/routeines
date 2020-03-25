@@ -5,7 +5,7 @@
 
       <div>
           <p class="subtitle is-5 level-item">
-            <strong><%= @routine_flow.flow_steps.size %></strong> flow <%= "step".pluralize %> remaining!
+            <strong><%= @routine_flow.flow_steps.inactive.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.inactive.size + 1) %> remaining!
           </p>
 
         <div class="buttons">
@@ -23,18 +23,18 @@
           <%= image_tag 'target.png' %>
         </div>
         <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-          <span id="flow-item-current-title"><%= @routine_flow.flow_steps.first.title %></span>
+          <%# display step with staus = active %>
+          <span id="current-flow-step-title"><%= @routine_flow.flow_steps.active.first.title %></span>
         </p>
         </br>
 
         <div class="buttons">
-          <a class="button is-large is-info is-fullwidth" href="#">Go to NEXT step</a>
-        <!-- <a class="button is-success " href="new-identity.html">Start</a> -->
+          <%= link_to "Go to NEXT step", routine_routine_flow_path(@routine, @routine_flow) , method: :put, class: "button is-large is-info is-fullwidth" %>
         </div>
       </article>
-
+      <%# display step with staus = inactive %>
       <div>
-        <%= render @routine_flow.flow_steps[1..-1] %>
+        <%= render @routine_flow.flow_steps.inactive %>
       </div>
       <br>
 

@@ -7,11 +7,17 @@ class RoutineFlowsController < ApplicationController
   def create
     build_routine_flow
     save_routine_flow
+    @routine_flow.start!
   end
 
   def show
     load_routine_flow
-    @routine_flow.start
+  end
+
+  def update
+    load_routine_flow
+    @routine_flow.next
+    redirect_to(routine_routine_flow_path(@routine, @routine_flow))
   end
 
   private
@@ -41,7 +47,6 @@ class RoutineFlowsController < ApplicationController
   def save_routine_flow
     redirect_to(routine_routine_flow_path(@routine, @routine_flow)) if @routine_flow.save
   end
-
 
   def routine_flow_params
     routine_flow_params = params[:routine_flow]

@@ -17,7 +17,7 @@ RSpec.describe RoutineFlow, type: :model do
     end
   end
 
-  describe '#start' do
+  describe '#start!' do
     it "clones associated routine's steps as flow_steps" do
       routine, routine_flow = start_routine_flow
 
@@ -71,7 +71,7 @@ RSpec.describe RoutineFlow, type: :model do
     routine_flow = RoutineFlow.create
     routine.routine_flows << routine_flow
 
-    routine_flow.start
+    routine_flow.start!
 
     [routine, routine_flow]
   end

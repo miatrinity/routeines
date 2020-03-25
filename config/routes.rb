@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :routines, except: %i[show] do
     resources :steps, except: %i[show]
-    resources :routine_flows, only: %i[show create]
+    resources :routine_flows, only: %i[show create update]
   end
 
 end
