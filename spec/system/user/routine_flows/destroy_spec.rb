@@ -13,9 +13,9 @@ RSpec.describe 'User finishes routine flow', type: :system do
     visit root_path
 
     click_on 'Start Routine'
-    click_on 'Go to NEXT step'
-    click_on 'Go to NEXT step'
-    click_on 'Finish'
+    click_on 'Finish Step'
+    click_on 'Finish Step'
+    click_on 'Finish Step'
 
     expect(page).to have_text("You have finished #{routine.title}!")
   end

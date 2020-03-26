@@ -7,7 +7,7 @@ class RoutineFlowsController < ApplicationController
   def create
     build_routine_flow
     save_routine_flow
-    @routine_flow.start!
+    start_routine_flow
   end
 
   def show
@@ -16,15 +16,12 @@ class RoutineFlowsController < ApplicationController
 
   def update
     load_routine_flow
-    @routine_flow.next
-    redirect_to(routine_routine_flow_path(@routine, @routine_flow))
+    take_next_routine_flow_step
   end
 
   def destroy
     load_routine_flow
-    @routine_flow.next
-
-    redirect_to routine_flow_report_path(@routine), notice: "#{@routine.title} was successfully finished."
+    complete_routine_flow
   end
 
   private
@@ -52,7 +49,26 @@ class RoutineFlowsController < ApplicationController
   end
 
   def save_routine_flow
-    redirect_to(routine_routine_flow_path(@routine, @routine_flow)) if @routine_flow.save
+    return unless @routine_flow.save
+
+    redirect_to routine_routine_flow_path(@routine, @routine_flow)
+  end
+
+  def start_routine_flow
+    @routine_flow.start!
+  end
+
+  def take_next_routine_flow_step
+    @routine_flow.take_next_step!
+
+    redirect_to routine_routine_flow_path(@routine, @routine_flow)
+  end
+
+  def complete_routine_flow
+    @routine_flow.complete!
+
+    redirect_to routine_flow_report_path(@routine),
+                notice: "#{@routine.title} was successfully finished."
   end
 
   def routine_flow_params

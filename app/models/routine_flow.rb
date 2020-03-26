@@ -12,8 +12,9 @@ class RoutineFlow < ApplicationRecord
     activate_first_flow_step
   end
 
-  def next
-    complete or advance_to_next
+  def take_next_step!
+    current_flow_step.complete!
+    next_flow_step.active!
   end
 
   private
@@ -34,14 +35,5 @@ class RoutineFlow < ApplicationRecord
 
   def next_flow_step
     flow_steps.inactive.first
-  end
-
-  def complete
-    complete! if current_flow_step.last?
-  end
-
-  def advance_to_next
-    current_flow_step.complete!
-    next_flow_step.active!
   end
 end

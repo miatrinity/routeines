@@ -31,20 +31,23 @@ RSpec.describe RoutineFlow, type: :model do
     end
   end
 
-  describe '#next' do
+  describe '#take_next_step!' do
     it 'should complete current step and activate next step' do
       _, routine_flow = start_routine_flow
 
-      routine_flow.next
+      routine_flow.take_next_step!
 
       expect(routine_flow.flow_steps.first).to be_complete
       expect(routine_flow.flow_steps.second).to be_active
     end
+  end
 
+  describe '#complete!' do
     it 'should complete routine flow if step is the last step' do
       routine, routine_flow = start_routine_flow
 
-      routine.steps.count.times { routine_flow.next }
+      (routine.steps.count-1).times { routine_flow.take_next_step! }
+      routine_flow.complete!
 
       expect(routine_flow).to be_complete
     end

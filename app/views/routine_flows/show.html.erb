@@ -29,8 +29,11 @@
         </br>
 
         <div class="buttons">
-          <%= link_to "Go to NEXT step", routine_routine_flow_path(@routine, @routine_flow) , method: :put, class: "button is-large is-info is-fullwidth" %>
-          <%= link_to "Finish", routine_routine_flow_path(@routine, @routine_flow) , method: :delete, class: "button is-large is-info is-fullwidth" %>
+          <% if @routine_flow.flow_steps.inactive.any? %>
+            <%= link_to "Finish Step", routine_routine_flow_path(@routine, @routine_flow) , method: :put, class: "button is-large is-info is-fullwidth" %>
+          <% else %>
+            <%= link_to "Finish Step", routine_routine_flow_path(@routine, @routine_flow) , method: :delete, class: "button is-large is-info is-fullwidth" %>
+          <% end %>
         </div>
       </article>
       <%# display step with staus = inactive %>

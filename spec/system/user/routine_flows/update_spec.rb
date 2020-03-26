@@ -13,7 +13,7 @@ RSpec.describe 'User goes to next step in routine flow', type: :system do
     visit root_path
 
     click_on 'Start Routine'
-    click_on 'Go to NEXT step'
+    click_on 'Finish Step'
 
     routine_flow = routine.reload.routine_flows.last
     initial_step_count = routine_flow.flow_steps.count
