@@ -20,6 +20,13 @@ class RoutineFlowsController < ApplicationController
     redirect_to(routine_routine_flow_path(@routine, @routine_flow))
   end
 
+  def destroy
+    load_routine_flow
+    @routine_flow.next
+
+    redirect_to routine_flow_report_path(@routine), notice: "#{@routine.title} was successfully finished."
+  end
+
   private
 
   def build_routine_flow
