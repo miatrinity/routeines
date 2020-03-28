@@ -8,11 +8,6 @@
             <strong><%= @routine_flow.flow_steps.upcoming.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.upcoming.size + 1) %> remaining!
           </p>
 
-        <div class="buttons">
-          <!-- <a class="button is-info is-fullwidth" href="new-identity.html">Cancel</a> -->
-          <!-- <a class="button is-success " href="new-identity.html">Start</a> -->
-        </div>
-
         <div class="level-item">
             <progress class="progress is-success" value="60" max="100">60%</progress>
         </div>
@@ -23,7 +18,6 @@
           <%= image_tag 'target.png' %>
         </div>
         <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-          <%# display step with staus = active %>
           <span id="current-flow-step-title"><%= @routine_flow.flow_steps.active.first.title %></span>
         </p>
         </br>
@@ -36,18 +30,15 @@
           <% end %>
         </div>
       </article>
-      <%# display step with staus = upcoming %>
+
       <div>
         <%= render @routine_flow.flow_steps.upcoming %>
       </div>
       <br>
 
       <div class="buttons">
-        <a class="button is-medium is-danger is-fullwidth" href="new-identity.html">I want to quit! Get me out of here!</a>
-        <!-- <a class="button is-success " href="new-identity.html">Start</a> -->
+        <a class="button is-medium is-danger is-fullwidth" href="new-identity.html">I want to quit!</a>
       </div>
-
-
 
     </div> <!-- end of colum -->
   </div> <!-- end of colums -->
