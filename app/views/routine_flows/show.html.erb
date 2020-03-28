@@ -5,7 +5,7 @@
 
       <div>
           <p class="subtitle is-5 level-item">
-            <strong><%= @routine_flow.flow_steps.inactive.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.inactive.size + 1) %> remaining!
+            <strong><%= @routine_flow.flow_steps.upcoming.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.upcoming.size + 1) %> remaining!
           </p>
 
         <div class="buttons">
@@ -29,16 +29,16 @@
         </br>
 
         <div class="buttons">
-          <% if @routine_flow.flow_steps.inactive.any? %>
+          <% if @routine_flow.flow_steps.upcoming.any? %>
             <%= link_to "Finish Step", routine_routine_flow_path(@routine, @routine_flow) , method: :put, class: "button is-large is-info is-fullwidth" %>
           <% else %>
             <%= link_to "Finish Step", routine_routine_flow_path(@routine, @routine_flow) , method: :delete, class: "button is-large is-info is-fullwidth" %>
           <% end %>
         </div>
       </article>
-      <%# display step with staus = inactive %>
+      <%# display step with staus = upcoming %>
       <div>
-        <%= render @routine_flow.flow_steps.inactive %>
+        <%= render @routine_flow.flow_steps.upcoming %>
       </div>
       <br>
 

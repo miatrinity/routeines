@@ -34,6 +34,6 @@ class RoutineFlow < ApplicationRecord
   end
 
   def next_flow_step
-    flow_steps.inactive.first
+    flow_steps.upcoming.first
   end
 end
