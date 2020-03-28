@@ -61,7 +61,7 @@ RSpec.describe RoutineFlow, type: :model do
   private
 
   def flow_step_titles_for(routine_flow)
-    routine_flow.flow_steps.map { |flow_step| flow_step.step.title }
+    routine_flow.flow_steps.map { |flow_step| flow_step.title }
   end
 
   def step_titles_for(routine)

@@ -49,13 +49,13 @@ class RoutineFlowsController < ApplicationController
   end
 
   def save_routine_flow
-    return unless @routine_flow.save
-
-    redirect_to routine_routine_flow_path(@routine, @routine_flow)
+    @routine_flow.save
   end
 
   def start_routine_flow
     @routine_flow.start!
+
+    redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end
 
   def take_next_routine_flow_step
