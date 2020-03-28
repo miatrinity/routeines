@@ -5,7 +5,7 @@
 
       <div>
           <p class="subtitle is-5 level-item">
-            <strong><%= @routine_flow.flow_steps.upcoming.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.upcoming.size + 1) %> remaining!
+            <span><strong><%= @routine_flow.flow_steps.upcoming.size + 1 %> </strong> flow <%= "step".pluralize(@routine_flow.flow_steps.upcoming.size + 1) %> remaining!</span>
           </p>
 
         <div class="level-item">
@@ -35,10 +35,6 @@
         <%= render @routine_flow.flow_steps.upcoming %>
       </div>
       <br>
-
-      <div class="buttons">
-        <a class="button is-medium is-danger is-fullwidth" href="new-identity.html">I want to quit!</a>
-      </div>
 
     </div> <!-- end of colum -->
   </div> <!-- end of colums -->
