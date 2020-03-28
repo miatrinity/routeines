@@ -70,15 +70,15 @@ module Chainable
     self.next.update_column(:first, true) if first
   end
 
-  def previous
-    routine.steps.find_by(next: self)
-  end
-
   def update_middle_step!
     previous.update_column(:next_id, next_id) if self.next
   end
 
   def update_last_step_before_deletion!
     previous.update_column(:next_id, nil)
+  end
+
+  def previous
+    routine.steps.find_by(next: self)
   end
 end
