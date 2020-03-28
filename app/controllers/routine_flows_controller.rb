@@ -59,7 +59,7 @@ class RoutineFlowsController < ApplicationController
   end
 
   def take_next_routine_flow_step
-    @routine_flow.take_next_step!
+    @routine_flow.take_next_flow_step!
 
     redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end

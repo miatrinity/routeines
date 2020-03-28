@@ -12,7 +12,7 @@ class RoutineFlow < ApplicationRecord
     activate_first_flow_step
   end
 
-  def take_next_step!
+  def take_next_flow_step!
     current_flow_step.complete!
     next_flow_step.active!
   end
