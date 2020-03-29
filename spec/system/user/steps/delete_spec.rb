@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'User deletes step', type: :system do
   it 'successfully' do
     routine = create(:routine, :with_steps)
-    step = routine.steps.sample
+    step = routine.reload.steps.sample
 
     login_as routine.user
 

@@ -67,7 +67,7 @@ RSpec.describe Step, type: :model do
 
       green_step.destroy
 
-      expect(red_step.reload.first).to be_truthy
+      expect(red_step.first).to be_truthy
       expect(red_step.next).to be_nil
     end
   end
