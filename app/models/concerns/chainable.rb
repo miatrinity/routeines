@@ -19,6 +19,10 @@ module Chainable
     Step.none if first_step.blank?
   end
 
+  def first_step
+    @_first_step ||= routine.steps.find_by(first: true)
+  end
+
   def build_chain_from(steps)
     return_chain_of(steps) or build_chain_from(steps << next_step(steps))
   end
@@ -32,7 +36,25 @@ module Chainable
   end
 
   def maintain_chain_after_insertion!
+    return unless new_step?
+
     set_first_step! or update_last_step_after_insertion!
+  end
+
+  def new_step?
+    inserting_first_step? || inserting_nth_step?
+  end
+
+  def inserting_first_step?
+    single_step_routine? && first_flag_not_set_yet?
+  end
+
+  def first_flag_not_set_yet?
+    !first
+  end
+
+  def inserting_nth_step?
+    routine.steps.map(&:next_id).count(nil) == 2
   end
 
   def maintain_chain_before_deletion!
@@ -42,15 +64,11 @@ module Chainable
       update_last_step_before_deletion!
   end
 
-  def first_step
-    @_first_step ||= routine.steps.find_by(first: true)
-  end
-
   def set_first_step!
-    update_column(:first, true) if first_step_of_routine?
+    update_column(:first, true) if single_step_routine?
   end
 
-  def first_step_of_routine?
+  def single_step_routine?
     routine.steps.one?
   end
 
