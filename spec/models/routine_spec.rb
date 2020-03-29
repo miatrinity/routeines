@@ -13,7 +13,6 @@ RSpec.describe Routine, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
-    it { should have_many(:steps) }
-    it { should have_many(:routine_flows) }
+    it { should have_many(:steps).dependent(:destroy) }
   end
 end

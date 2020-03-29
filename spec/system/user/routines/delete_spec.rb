@@ -4,12 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'User deletes routine', type: :system do
   it 'successfully' do
-    routine = create(:routine, :with_steps)
+    routine = create(:routine)
 
     login_as routine.user
 
-    visit routines_path
-    click_on 'Start Routine'
     visit routines_path
 
     accept_confirm do

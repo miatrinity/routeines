@@ -37,8 +37,7 @@ class StepsController < ApplicationController
   private
 
   def load_steps
-    load_routine
-    @steps ||= @routine.to_chain_of_steps
+    @steps ||= step_scope.to_a
   end
 
   def load_step
@@ -64,9 +63,7 @@ class StepsController < ApplicationController
   end
 
   def save_step(notice)
-    return unless @step.save
-
-    redirect_to(routine_steps_path(@routine), notice: notice)
+    redirect_to(routine_steps_path(@routine), notice: notice) if @step.save
   end
 
   def step_params

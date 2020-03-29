@@ -8,12 +8,11 @@ RSpec.describe 'User edits step', type: :system do
   end
 
   it 'successfully' do
-    routine = create(:routine, :with_steps)
-    step = routine.steps.sample
+    step = create(:step)
 
-    login_as routine.user
+    login_as step.routine.user
 
-    visit routine_steps_path(routine)
+    visit routine_steps_path(step.routine)
 
     find("#step_#{step.id} [aria-label='edit']").click
 

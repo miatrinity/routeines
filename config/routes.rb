@@ -10,8 +10,5 @@ Rails.application.routes.draw do
 
   resources :routines, except: %i[show] do
     resources :steps, except: %i[show]
-    resources :routine_flows, only: %i[show create update destroy]
   end
-
-  get 'routines/:id/report', to: 'routine_flow_report#index', as: :routine_flow_report
 end

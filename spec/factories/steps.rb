@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :step do
-    sequence(:title) { |n| "Step #{n}" }
+    title { 'Step 1' }
     sequence(:routine) { association(:routine) }
   end
 end
