@@ -8,6 +8,7 @@
     <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
       <%= link_to routine.title, routine_steps_path(routine), id: "#{dom_id(routine)}-title" %>
     </p>
+    <br>
     <div>
       <%= button_to 'Start Routine', routine_routine_flows_path(routine), id: "#{dom_id(routine)}-start", class: "button is-large is-fullwidth is-info" %>
     </div>
