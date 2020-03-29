@@ -12,7 +12,7 @@ class RoutineFlowsController < ApplicationController
 
   def show
     load_routine_flow
-    create_routine_flow_presenter
+    redirect_to_report_if_completed or create_routine_flow_presenter
   end
 
   def update
@@ -66,15 +66,21 @@ class RoutineFlowsController < ApplicationController
   end
 
   def complete_routine_flow
-    @routine_flow.complete!
+    @routine_flow.complete_routine_flow!
 
-    redirect_to routine_flow_report_path(@routine),
+    redirect_to routine_flow_report_path(@routine, @routine_flow),
                 notice: "#{@routine.title} was successfully finished."
   end
 
   def routine_flow_params
     routine_flow_params = params[:routine_flow]
     routine_flow_params ? routine_flow_params.permit : {}
+  end
+
+  def redirect_to_report_if_completed
+    return unless @routine_flow.complete?
+
+    redirect_to routine_flow_report_path(@routine, @routine_flow)
   end
 
   def create_routine_flow_presenter

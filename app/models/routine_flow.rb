@@ -19,6 +19,11 @@ class RoutineFlow < ApplicationRecord
     next_flow_step.active!
   end
 
+  def complete_routine_flow!
+    current_flow_step.complete!
+    complete!
+  end
+
   private
 
   def clone_steps_of(routine)
