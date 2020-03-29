@@ -12,6 +12,7 @@ class RoutineFlowsController < ApplicationController
 
   def show
     load_routine_flow
+    create_routine_flow_presenter
   end
 
   def update
@@ -74,5 +75,9 @@ class RoutineFlowsController < ApplicationController
   def routine_flow_params
     routine_flow_params = params[:routine_flow]
     routine_flow_params ? routine_flow_params.permit : {}
+  end
+
+  def create_routine_flow_presenter
+    @presenter = RoutineFlowPresenter.new(@routine_flow)
   end
 end
