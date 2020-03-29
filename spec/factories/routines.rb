@@ -11,5 +11,38 @@ FactoryBot.define do
         filename: 'routine.png', content_type: 'image/png'
       )
     end
+
+    trait :with_steps do
+      transient do
+        steps_count { 3 }
+      end
+
+      after(:create) do |routine, evaluator|
+        evaluator.steps_count.times do
+          create(:step, routine: routine)
+        end
+      end
+    end
+
+    trait :with_red_green do
+      after(:create) do |routine, _|
+        red_step = create(:step, title: 'Red Step', routine: routine)
+        create(:step, title: 'Green Step', routine: routine)
+
+        routine.steps.each{|step| step.reload}
+        routine.reload
+      end
+    end
+
+    trait :with_red_green_blue do
+      after(:create) do |routine, _|
+        red_step   = create(:step, title: 'Red Step', routine: routine)
+        green_step = create(:step, title: 'Green Step', routine: routine)
+        create(:step, title: 'Blue Step', routine: routine)
+
+        routine.steps.each{|step| step.reload}
+        routine.reload
+      end
+    end
   end
 end
