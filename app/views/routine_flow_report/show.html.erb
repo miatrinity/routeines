@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="columns is-mobile is-centered">
+    <div class="column column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+      <h1 class="level-item title is-spaced is-marginless is-capitalized is-centered"><%= @routine_flow.title %></h1>
+
+      <div>
+          <p class="subtitle is-5 level-item">
+            <span>finished at XYZ</span>
+          </p>
+      </div>
+
+      <article class="box has-text-centered">
+        <div class="box" id="completed-routine-flow">
+          <%= image_tag 'laurel-wreath.png' %>
+        </div>
+        <br>
+        <div class="buttons">
+          <%=  link_to "Reports", routine_flow_reports_path(@routine, @routine_flow), class: "button is-large is-info is-fullwidth" %>
+          <%=  link_to "Routines", routines_path, class: "button is-large is-info is-fullwidth" %>
+        </div>
+      </article>
+
+    </div> <!-- end of colum -->
+  </div> <!-- end of colums -->
+</section>

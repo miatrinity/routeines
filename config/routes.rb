@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :routine_flows, only: %i[show create update destroy]
   end
 
-  get 'routines/:id/report', to: 'routine_flow_report#index', as: :routine_flow_report
+  get 'routines/:id/report', to: 'routine_flow_report#index', as: :routine_flow_reports
+  get 'routines/:id/report/:routine_flow_id', to: 'routine_flow_report#show', as: :routine_flow_report
 end
