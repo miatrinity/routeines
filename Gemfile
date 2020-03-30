@@ -37,7 +37,7 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.2'
-  gem 'simplecov', '~> 0.17.1', require: false
+  gem 'simplecov', '~> 0.18.5', require: false
   gem 'webdrivers'
 end
 
