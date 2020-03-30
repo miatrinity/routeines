@@ -15,8 +15,8 @@ class RoutineFlowPresenter
     "<strong>#{upcoming_flow_step_count}</strong> #{pluralized_flow_step} remaining!".html_safe
   end
 
-  def finish_step_button
-    link_to "Finish Step",
+  def finish_flow_step_button
+    link_to "Finish",
       finish_step_path,
       method: http_method,
       class: "button is-large is-info is-fullwidth"
@@ -28,6 +28,13 @@ class RoutineFlowPresenter
 
   def upcoming_flow_steps
     routine_flow.flow_steps.upcoming
+  end
+
+  def routine_flow_progress
+    complete_flow_step_count = routine_flow.flow_steps.complete.count
+    all_flow_step_count = routine_flow.flow_steps.count
+
+    (complete_flow_step_count / Float(all_flow_step_count) * 100).floor
   end
 
   private
