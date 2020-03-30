@@ -30,6 +30,13 @@ class RoutineFlowPresenter
     routine_flow.flow_steps.upcoming
   end
 
+  def routine_flow_progress
+    complete_flow_step_count = routine_flow.flow_steps.complete.count
+    all_flow_step_count = routine_flow.flow_steps.count
+
+    (complete_flow_step_count / Float(all_flow_step_count) * 100).floor
+  end
+
   private
 
   attr_reader :routine_flow
