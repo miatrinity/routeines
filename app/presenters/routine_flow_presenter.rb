@@ -31,9 +31,6 @@ class RoutineFlowPresenter
   end
 
   def routine_flow_progress
-    complete_flow_step_count = routine_flow.flow_steps.complete.count
-    all_flow_step_count = routine_flow.flow_steps.count
-
     (complete_flow_step_count / Float(all_flow_step_count) * 100).floor
   end
 
@@ -46,7 +43,7 @@ class RoutineFlowPresenter
   end
 
   def pluralized_flow_step
-    "flow step".pluralize upcoming_flow_step_count
+    'flow step'.pluralize upcoming_flow_step_count
   end
 
   def http_method
@@ -63,5 +60,13 @@ class RoutineFlowPresenter
 
   def active_flow_step
     routine_flow.flow_steps.active.first
+  end
+
+  def complete_flow_step_count
+    routine_flow.flow_steps.complete.count
+  end
+
+  def all_flow_step_count
+    routine_flow.flow_steps.count
   end
 end
