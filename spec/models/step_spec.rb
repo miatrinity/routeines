@@ -18,6 +18,20 @@ RSpec.describe Step, type: :model do
     end
   end
 
+  describe '#last?' do
+    it 'should be true for a single step' do
+      expect(Step.new.last?).to be_truthy
+    end
+
+    it 'should be true only for the last step' do
+      red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
+
+      expect(red_step.last?).to be_falsy
+      expect(green_step.last?).to be_falsy
+      expect(blue_step.last?).to be_truthy
+    end
+  end
+
   describe '#to_chain' do
     it 'should return an array of steps in the desired order described by the chain' do
       red_step, green_step, blue_step = create(:routine, :with_red_green_blue).steps
