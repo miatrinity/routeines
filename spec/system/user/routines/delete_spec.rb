@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User deletes routine', type: :system do
-  it 'successfully' do
+  it 'successfully', js: true do
     routine = create(:routine, :with_steps)
 
     login_as routine.user

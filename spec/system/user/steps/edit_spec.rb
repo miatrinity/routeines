@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User edits step', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'successfully' do
     routine = create(:routine, :with_steps)
     step = routine.steps.sample

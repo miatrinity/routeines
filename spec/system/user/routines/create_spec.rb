@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User creates routine', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'successfully' do
     login_as create(:user)
     visit root_path

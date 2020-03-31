@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User creates step', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'successfully' do
     routine = create(:routine)
     login_as routine.user

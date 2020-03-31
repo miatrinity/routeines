@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User deletes step', type: :system do
-  it 'successfully' do
+  it 'successfully', js: true do
     routine = create(:routine, :with_steps)
     step = routine.reload.steps.sample
 

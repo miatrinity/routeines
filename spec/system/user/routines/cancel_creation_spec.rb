@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User cancels routine creation', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'successfully' do
     login_as create(:user)
     visit new_routine_path

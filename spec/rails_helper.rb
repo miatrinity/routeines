@@ -43,6 +43,18 @@ RSpec.configure do |config|
   config.include SystemTests, type: :system
   config.include Warden::Test::Helpers
 
+  config.before(:each, type: :system) do
+    example = RSpec.current_example
+
+    driver = if example.metadata[:js]
+               ENV['SHOW_BROWSER'] ? :selenium_chrome : :selenium_chrome_headless
+             else
+               :rack_test
+             end
+
+    driven_by driver
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
