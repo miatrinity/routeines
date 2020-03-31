@@ -22,37 +22,18 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item has-dropdown is-hoverable">
-        <div class="navbar-link">
-          <%= current_user.email %>
-        </div>
-        <div class="navbar-dropdown is-right">
-          <a class="navbar-item">
-            <div>
-              <span class="icon is-small">
-                <i class="fa fa-user-circle-o"></i>
-              </span>
-              Profile
-            </div>
-          </a>
-          <a class="navbar-item">
-            <div>
-              <span class="icon is-small">
-                <i class="fa fa-bug"></i>
-              </span>
-              Report bug
-            </div>
-          </a>
-
-          <%= link_to destroy_user_session_path, method: :delete, class: 'navbar-item' do %>
-            <div>
-              <span class="icon is-small">
-                <i class="fa fa-sign-out"></i>
-              </span>
-              Sign Out
-            </div>
-          <% end %>
-        </div>
+      <div class="navbar-item">
+        <%= current_user.email %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to destroy_user_session_path, method: :delete, class: 'navbar-item' do %>
+          <div>
+            <span class="icon is-small">
+              <i class="fa fa-sign-out"></i>
+            </span>
+            Sign Out
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

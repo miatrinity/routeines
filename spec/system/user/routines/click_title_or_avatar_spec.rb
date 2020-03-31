@@ -3,10 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User routine title or avatar', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'goes to steps index for the given routine' do
     routine = create(:routine)
 

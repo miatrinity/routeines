@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User chooses file when creating routine', type: :system do
-  it 'filename shows up' do
+  it 'filename shows up', js: true do
     login_as create(:user)
 
     visit new_routine_path
