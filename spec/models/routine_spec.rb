@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe Routine, type: :model do
+RSpec.describe Routine do
   describe '#title' do
     it { should validate_presence_of(:title) }
   end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User edits step', type: :system do
+RSpec.describe 'User edits step' do
   it 'successfully' do
     routine = create(:routine, :with_steps)
     step = routine.steps.sample

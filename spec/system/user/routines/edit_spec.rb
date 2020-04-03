@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User edits routine', type: :system do
+RSpec.describe 'User edits routine' do
   it 'successfully' do
     routine = create(:routine)
 

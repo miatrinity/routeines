@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User chooses file when creating routine', type: :system do
+RSpec.describe 'User chooses file when creating routine' do
   it 'filename shows up', js: true do
     login_as create(:user)
 

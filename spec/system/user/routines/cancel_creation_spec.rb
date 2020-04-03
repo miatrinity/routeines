@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User cancels routine creation', type: :system do
+RSpec.describe 'User cancels routine creation' do
   it 'successfully' do
     login_as create(:user)
     visit new_routine_path

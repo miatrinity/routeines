@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe RoutineFlow, type: :model do
+RSpec.describe RoutineFlow do
   describe 'newly created routine flow' do
     it 'has status of :active' do
       routine_flow = RoutineFlow.new
