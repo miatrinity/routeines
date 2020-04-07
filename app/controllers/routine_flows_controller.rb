@@ -68,7 +68,7 @@ class RoutineFlowsController < ApplicationController
   def complete_routine_flow
     @routine_flow.complete_routine_flow!
 
-    redirect_to routine_flow_report_path(@routine, @routine_flow),
+    redirect_to routine_routine_flow_report_path(@routine, @routine_flow),
                 notice: "#{@routine.title} was successfully finished."
   end
 
@@ -80,7 +80,7 @@ class RoutineFlowsController < ApplicationController
   def redirect_to_report_if_completed
     return unless @routine_flow.complete?
 
-    redirect_to routine_flow_report_path(@routine, @routine_flow)
+    redirect_to routine_routine_flow_report_path(@routine, @routine_flow)
   end
 
   def create_routine_flow_presenter
