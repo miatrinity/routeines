@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe Step, type: :model do
+RSpec.describe Step do
   describe '#title' do
     it { should validate_presence_of(:title) }
   end

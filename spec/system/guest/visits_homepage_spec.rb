@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Guest visits homepage', type: :system do
+RSpec.describe 'Guest visits homepage' do
   it 'successfully' do
     visit root_path
 

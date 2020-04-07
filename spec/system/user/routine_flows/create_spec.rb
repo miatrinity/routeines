@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User creates routine flow', type: :system do
+RSpec.describe 'User creates routine flow' do
   it 'successfully' do
     routine = create(:routine, :with_red_green_blue)
     login_as routine.user

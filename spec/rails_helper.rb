@@ -39,6 +39,11 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+require 'action_dispatch/system_testing/server'
+ActionDispatch::SystemTesting::Server.silence_puma = true
+
+
 RSpec.configure do |config|
   config.include SystemTests, type: :system
   config.include Warden::Test::Helpers

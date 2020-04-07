@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User creates step', type: :system do
+RSpec.describe 'User creates step' do
   it 'successfully' do
     routine = create(:routine)
     login_as routine.user

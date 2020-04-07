@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Guest signs up', type: :system do
+RSpec.describe 'Guest signs up' do
   it 'successfully' do
     visit root_path
 

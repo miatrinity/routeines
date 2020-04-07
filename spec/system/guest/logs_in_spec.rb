@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'Guest logs in', type: :system do
+RSpec.describe 'Guest logs in' do
   it 'successfully' do
     user = create(:user)
 

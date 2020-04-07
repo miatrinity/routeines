@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User deletes routine', type: :system do
+RSpec.describe 'User deletes routine' do
   it 'successfully', js: true do
     routine = create(:routine, :with_steps)
 

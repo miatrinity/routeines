@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe 'User creates routine', type: :system do
+RSpec.describe 'User creates routine' do
   it 'successfully' do
     login_as create(:user)
     visit root_path

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe FlowStep, type: :model do
+RSpec.describe FlowStep do
   describe 'newly created flow step' do
     it 'has status of :upcoming' do
       flow_step = FlowStep.new
