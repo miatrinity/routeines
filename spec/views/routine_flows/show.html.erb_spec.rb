@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'routine_flows/show', type: :view do
+RSpec.describe 'routine_flows/show' do
   it 'displays the correct progress when no flow steps are complete' do
     verify_routine_flow_progress :with_0_out_of_3_completed_flow_steps, complete: 0
   end

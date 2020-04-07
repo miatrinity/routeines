@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'routines/new', type: :view do
+RSpec.describe 'routines/new' do
   it "'No file chosen' is displayed if no avatar is attached" do
     assign(:routine, Routine.new)
     render
