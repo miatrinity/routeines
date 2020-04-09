@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_101933) do
+ActiveRecord::Schema.define(version: 2020_04_09_081427) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_101933) do
     t.integer "status", default: 0
     t.string "time_to_complete", default: "0"
     t.integer "routine_id", null: false
+    t.datetime "completed_at"
     t.index ["routine_id"], name: "index_routine_flows_on_routine_id"
   end
 
