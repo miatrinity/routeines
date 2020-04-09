@@ -40,14 +40,24 @@ RSpec.describe RoutineFlow do
     end
   end
 
-  describe '#complete!' do
+  describe '#complete_routine_flow!' do
     it 'should complete routine flow if step is the last step' do
       routine, routine_flow = start_routine_flow
 
       (routine.steps.count-1).times { routine_flow.take_next_flow_step! }
-      routine_flow.complete!
+      routine_flow.complete_routine_flow!
 
       expect(routine_flow).to be_complete
+    end
+
+    it 'should update finished_at with current time' do
+      freeze_time
+      routine, routine_flow = start_routine_flow
+
+      (routine.steps.count-1).times { routine_flow.take_next_flow_step! }
+      routine_flow.complete_routine_flow!
+
+      expect(routine_flow.completed_at).to eq(Time.current)
     end
   end
 

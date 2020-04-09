@@ -22,6 +22,7 @@ class RoutineFlow < ApplicationRecord
   def complete_routine_flow!
     current_flow_step.complete!
     complete!
+    update_attribute(:completed_at, Time.current)
   end
 
   private

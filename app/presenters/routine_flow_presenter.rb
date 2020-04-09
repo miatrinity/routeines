@@ -16,10 +16,10 @@ class RoutineFlowPresenter
   end
 
   def finish_flow_step_button
-    link_to "Finish",
-      finish_step_path,
-      method: http_method,
-      class: "button is-large is-info is-fullwidth"
+    link_to 'Finish',
+            finish_step_path,
+            method: http_method,
+            class: 'button is-large is-info is-fullwidth'
   end
 
   def active_flow_step_title
