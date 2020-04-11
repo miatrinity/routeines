@@ -3,16 +3,36 @@
 # :nodoc:
 class RoutineFlowReportsController < ApplicationController
   def index
-    @routine = Routine.find(params[:id])
+    load_routine_flows
   end
 
   def show
-    @routine = Routine.find(params[:routine_id])
-    @routine_flow = @routine.routine_flows.find(params[:id])
+    load_routine_flow
     create_routine_flow_report_presenter
   end
 
   private
+
+  def load_routine_flows
+    @routine_flows ||= routine_flow_scope.to_a
+  end
+
+  def routine_flow_scope
+    load_routine
+    @routine.routine_flows
+  end
+
+  def load_routine_flow
+    @routine_flow ||= routine_flow_scope.find(params[:id])
+  end
+
+  def load_routine
+    @routine ||= routine_scope.find(params[:routine_id])
+  end
+
+  def routine_scope
+    current_user.routines
+  end
 
   def create_routine_flow_report_presenter
     @presenter = RoutineFlowReportPresenter.new(@routine_flow)
