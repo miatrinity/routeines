@@ -2,6 +2,8 @@
 
 # :nodoc:
 class RoutineFlow < ApplicationRecord
+  attribute :time_to_complete, :duration
+
   enum status: { active: 0, complete: 1 }
 
   belongs_to :routine
