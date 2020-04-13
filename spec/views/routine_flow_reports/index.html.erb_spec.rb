@@ -2,9 +2,9 @@
 
 RSpec.describe 'routine_flow_reports/index' do
   it 'displays a list of complete routine flows' do
-    routine_flow1 = create(:routine_flow, :complete, time_to_complete: 15.seconds)
-    routine_flow2 = create(:routine_flow, :complete, time_to_complete: 8.minutes + 33.seconds)
-    routine_flow3 = create(:routine_flow, :complete, time_to_complete: 2.hours + 17.minutes + 25.seconds)
+    routine_flow1 = build_stubbed(:routine_flow, :complete, time_to_complete: 15.seconds)
+    routine_flow2 = build_stubbed(:routine_flow, :complete, time_to_complete: 8.minutes + 33.seconds)
+    routine_flow3 = build_stubbed(:routine_flow, :complete, time_to_complete: 2.hours + 17.minutes + 25.seconds)
 
     routine_flow_report_presenter = RoutineFlowReportPresenter.new(nil)
 

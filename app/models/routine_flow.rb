@@ -14,6 +14,7 @@ class RoutineFlow < ApplicationRecord
   def start!
     clone_steps_of routine
     activate_first_flow_step
+    update_start_time
   end
 
   def take_next_flow_step!
@@ -24,7 +25,7 @@ class RoutineFlow < ApplicationRecord
   def complete_routine_flow!
     current_flow_step.complete!
     complete!
-    update_attribute(:completed_at, Time.current)
+    update_completed_at_and_duration!
   end
 
   private
@@ -41,11 +42,24 @@ class RoutineFlow < ApplicationRecord
     flow_steps.first.active!
   end
 
+  def update_start_time
+    update_attribute(:started_at, Time.current)
+  end
+
+  def update_completed_at_and_duration!
+    completed_at = Time.current
+    update(completed_at: completed_at, time_to_complete: time_to_complete_from(completed_at, started_at))
+  end
+
   def current_flow_step
     flow_steps.active.last
   end
 
   def next_flow_step
     flow_steps.upcoming.first
+  end
+
+  def time_to_complete_from(completed_at, started_at)
+    ActiveSupport::Duration.build(completed_at - started_at)
   end
 end
