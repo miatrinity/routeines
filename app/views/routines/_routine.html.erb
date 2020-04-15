@@ -10,11 +10,16 @@
     </p>
     <br>
     <div>
-      <%= button_to 'Start Routine', routine_routine_flows_path(routine), id: "#{dom_id(routine)}-start", class: "button is-large is-fullwidth is-info" %>
+      <%= button_to 'Start Routine', routine_routine_flows_path(routine), id: "#{dom_id(routine)}-start", class: "button is-large is-fullwidth is-info", style: "margin-bottom: 10px;"%>
+    </div>
+    <div>
+      <%= link_to 'Reports', routine_routine_flow_reports_path(routine), id: "#{dom_id(routine)}-reports", class: "button is-large is-fullwidth is-info is-light" %>
     </div>
     <br>
     <div class="content is-small">
-      <%= link_to "Edit", edit_routine_path(routine) %>
+      <%= link_to "Add Steps", routine_steps_path(routine) %>
+      <span>·</span>
+      <%= link_to "Edit Routine", edit_routine_path(routine) %>
       <span>·</span>
       <%= link_to "Delete", routine, method: :delete, data: { confirm: "Are you sure you want to remove #{routine.title} from Routines? "} %>
       <p></p>
