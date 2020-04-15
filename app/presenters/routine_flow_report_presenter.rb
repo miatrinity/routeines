@@ -25,6 +25,11 @@ class RoutineFlowReportPresenter
     "completed on #{formatted_date_time}"
   end
 
+  def time_to_complete
+    binding.pry
+    routine_flow.time_to_complete
+  end
+
   private
 
   attr_reader :routine_flow

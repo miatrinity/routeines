@@ -3,14 +3,22 @@
 FactoryBot.define do
   factory :routine_flow do
     trait :complete do
+      transient do
+        overridden_time_to_complete { -1 }
+      end
+
       before(:create) do |routine_flow, _|
         routine = create(:routine, :with_steps, steps_count: 1)
         routine.routine_flows << routine_flow
       end
 
-      after(:create) do |routine_flow, _|
+      after(:create) do |routine_flow, evaluator|
         routine_flow.start!
         routine_flow.complete_routine_flow!
+
+        if evaluator.overridden_time_to_complete != -1
+          routine_flow.update_attribute(:time_to_complete, evaluator.overridden_time_to_complete)
+        end
       end
     end
 

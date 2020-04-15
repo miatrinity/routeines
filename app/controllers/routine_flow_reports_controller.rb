@@ -14,7 +14,8 @@ class RoutineFlowReportsController < ApplicationController
   private
 
   def load_routine_flows
-    @routine_flows ||= routine_flow_scope.to_a
+    @routine_flows ||= routine_flow_scope.order('completed_at desc').to_a
+    @routine_flow_count = @routine_flows.size
   end
 
   def routine_flow_scope
