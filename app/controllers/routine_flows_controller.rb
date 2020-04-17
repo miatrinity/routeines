@@ -12,7 +12,7 @@ class RoutineFlowsController < ApplicationController
 
   def show
     load_routine_flow
-    redirect_to_report_if_completed or create_routine_flow_presenter
+    redirect_to_report_if_completed
   end
 
   def update
@@ -81,9 +81,5 @@ class RoutineFlowsController < ApplicationController
     return unless @routine_flow.complete?
 
     redirect_to routine_routine_flow_report_path(@routine, @routine_flow)
-  end
-
-  def create_routine_flow_presenter
-    @presenter = RoutineFlowPresenter.new(@routine_flow)
   end
 end

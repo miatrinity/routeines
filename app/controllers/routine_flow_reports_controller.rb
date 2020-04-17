@@ -8,7 +8,6 @@ class RoutineFlowReportsController < ApplicationController
 
   def show
     load_routine_flow
-    create_routine_flow_report_presenter
   end
 
   private
@@ -33,9 +32,5 @@ class RoutineFlowReportsController < ApplicationController
 
   def routine_scope
     current_user.routines
-  end
-
-  def create_routine_flow_report_presenter
-    @presenter = RoutineFlowReportPresenter.new(@routine_flow)
   end
 end
