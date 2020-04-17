@@ -1,37 +1,16 @@
 class RoutineFlowPresenter < BasePresenter
-  presents :routine_flow
-  delegate :routine, to: :routine_flow, prefix: false
+  include Buttons
 
-  def title
-    routine_flow.title
-  end
+  presents :routine_flow
+  delegate :routine, :title, to: :routine_flow, prefix: false
 
   def completed_at
     formatted_date_time = routine_flow.completed_at.to_s(:long_ordinal)
     "completed on #{formatted_date_time}"
   end
 
-  def reports_button
-    link_to 'Reports',
-            routine_routine_flow_reports_path(routine),
-            class: 'button is-large is-info is-fullwidth'
-  end
-
-  def routines_button
-    link_to 'Routines',
-            routines_path,
-            class: 'button is-large is-info is-fullwidth'
-  end
-
   def remaining_flow_steps
     "<strong>#{upcoming_flow_step_count}</strong> #{pluralized_flow_step} remaining!".html_safe
-  end
-
-  def finish_flow_step_button
-    link_to 'Finish',
-            finish_step_path,
-            method: http_method,
-            class: 'button is-large is-info is-fullwidth'
   end
 
   def active_flow_step_title
