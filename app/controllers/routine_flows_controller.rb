@@ -12,7 +12,7 @@ class RoutineFlowsController < ApplicationController
 
   def show
     load_routine_flow
-    redirect_to_report_if_completed or create_routine_flow_presenter
+    redirect_to_report_if_completed
   end
 
   def update
@@ -54,21 +54,21 @@ class RoutineFlowsController < ApplicationController
   end
 
   def start_routine_flow
-    @routine_flow.start!
+    RoutineFlowStepper.new(@routine_flow).start
 
     redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end
 
   def take_next_routine_flow_step
-    @routine_flow.take_next_flow_step!
+    RoutineFlowStepper.new(@routine_flow).take_next_flow_step
 
     redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end
 
   def complete_routine_flow
-    @routine_flow.complete_routine_flow!
+    RoutineFlowStepper.new(@routine_flow).complete_routine_flow
 
-    redirect_to routine_flow_report_path(@routine, @routine_flow),
+    redirect_to routine_routine_flow_report_path(@routine, @routine_flow),
                 notice: "#{@routine.title} was successfully finished."
   end
 
@@ -80,10 +80,6 @@ class RoutineFlowsController < ApplicationController
   def redirect_to_report_if_completed
     return unless @routine_flow.complete?
 
-    redirect_to routine_flow_report_path(@routine, @routine_flow)
-  end
-
-  def create_routine_flow_presenter
-    @presenter = RoutineFlowPresenter.new(@routine_flow)
+    redirect_to routine_routine_flow_report_path(@routine, @routine_flow)
   end
 end

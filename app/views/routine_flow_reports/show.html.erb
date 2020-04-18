@@ -6,31 +6,23 @@
 
         <div>
             <p class="subtitle is-5 level-item">
-              <span><%= routine_flow_presenter.remaining_flow_steps %></span>
+              <span><%= routine_flow_presenter.completed_at %></span>
             </p>
-
-          <div class="level-item">
-              <progress class="progress is-success" value=<%= routine_flow_presenter.routine_flow_progress %> max="100"></progress>
-          </div>
+            <div class="level-item">
+              <progress class="progress is-success" value="100" max="100"></progress>
+            </div>
         </div>
 
         <article class="box has-text-centered">
-          <div class="box">
-            <%= image_tag 'target.png' %>
+          <div class="box" id="completed-routine-flow">
+            <%= image_tag 'laurel-wreath.png' %>
           </div>
-          <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-            <span id="current-flow-step-title"><%= routine_flow_presenter.active_flow_step_title %></span>
-          </p>
           <br>
           <div class="buttons">
-            <%= routine_flow_presenter.finish_flow_step_button %>
+            <%= routine_flow_presenter.reports_button %>
+            <%= routine_flow_presenter.routines_button %>
           </div>
         </article>
-
-        <div>
-          <%= render routine_flow_presenter.upcoming_flow_steps %>
-        </div>
-        <br>
 
       </div> <!-- end of colum -->
     </div> <!-- end of colums -->

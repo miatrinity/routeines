@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe FlowStep do
+  describe 'associations' do
+    it { should belong_to(:routine_flow) }
+    it { should belong_to(:step) }
+  end
+
   describe 'newly created flow step' do
     it 'has status of :upcoming' do
       flow_step = FlowStep.new
@@ -13,10 +18,5 @@ RSpec.describe FlowStep do
 
       expect(flow_step.time_to_complete).to eql('0')
     end
-  end
-
-  describe 'associations' do
-    it { should belong_to(:routine_flow) }
-    it { should belong_to(:step) }
   end
 end

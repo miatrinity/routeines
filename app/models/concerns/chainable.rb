@@ -5,8 +5,8 @@ module Chainable
   extend ActiveSupport::Concern
 
   included do
-    after_save :maintain_chain_after_insertion!
-    before_destroy :maintain_chain_before_deletion!
+    after_save :maintain_chain_after_insertion
+    before_destroy :maintain_chain_before_deletion
   end
 
   def to_chain
@@ -35,10 +35,10 @@ module Chainable
     steps.last.next
   end
 
-  def maintain_chain_after_insertion!
+  def maintain_chain_after_insertion
     return unless new_step?
 
-    set_first_step! or update_last_step_after_insertion!
+    set_first_step or update_last_step_after_insertion
   end
 
   def new_step?
@@ -57,14 +57,14 @@ module Chainable
     routine.steps.map(&:next_id).count(nil) == 2
   end
 
-  def maintain_chain_before_deletion!
+  def maintain_chain_before_deletion
     ignore_single_step or
-      update_first_of_multiple_steps! or
-      update_middle_step! or
-      update_last_step_before_deletion!
+      update_first_of_multiple_steps or
+      update_middle_step or
+      update_last_step_before_deletion
   end
 
-  def set_first_step!
+  def set_first_step
     update_column(:first, true) if single_step_routine?
   end
 
@@ -72,7 +72,7 @@ module Chainable
     routine.steps.one?
   end
 
-  def update_last_step_after_insertion!
+  def update_last_step_after_insertion
     last_step_before_insertion.update_column(:next_id, id)
   end
 
@@ -84,15 +84,15 @@ module Chainable
     first && self.next.blank?
   end
 
-  def update_first_of_multiple_steps!
+  def update_first_of_multiple_steps
     self.next.update_column(:first, true) if first
   end
 
-  def update_middle_step!
+  def update_middle_step
     previous.update_column(:next_id, next_id) if self.next
   end
 
-  def update_last_step_before_deletion!
+  def update_last_step_before_deletion
     previous.update_column(:next_id, nil)
   end
 

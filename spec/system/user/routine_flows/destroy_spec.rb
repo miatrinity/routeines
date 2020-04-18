@@ -12,6 +12,10 @@ RSpec.describe 'User finishes routine flow' do
     click_on 'Finish'
 
     expect(page).to have_text("#{routine.title} was successfully finished.")
-    expect(page).to have_text('finished at ')
+    expect(page).to have_css('h1.title', text: routine.title)
+    expect(page).to have_text('completed on ')
+    expect(page).to have_css('progress')
+    expect(page).to have_css('a.button', text: 'Reports')
+    expect(page).to have_css('a.button', text: 'Routines')
   end
 end
