@@ -13,8 +13,9 @@ FactoryBot.define do
       end
 
       after(:create) do |routine_flow, evaluator|
-        routine_flow.start
-        routine_flow.complete_routine_flow
+        routine_flow_stepper = RoutineFlowStepper.new(routine_flow)
+        routine_flow_stepper.start
+        routine_flow_stepper.complete_routine_flow
 
         if evaluator.overridden_time_to_complete != -1
           routine_flow.update_attribute(:time_to_complete, evaluator.overridden_time_to_complete)
@@ -29,7 +30,7 @@ FactoryBot.define do
       end
 
       after(:create) do |routine_flow, _|
-        routine_flow.start
+        RoutineFlowStepper.new(routine_flow).start
       end
     end
 
@@ -40,8 +41,9 @@ FactoryBot.define do
       end
 
       after(:create) do |routine_flow, _|
-        routine_flow.start
-        routine_flow.take_next_flow_step
+        routine_flow_stepper = RoutineFlowStepper.new(routine_flow)
+        routine_flow_stepper.start
+        routine_flow_stepper.take_next_flow_step
       end
     end
 
@@ -52,9 +54,10 @@ FactoryBot.define do
       end
 
       after(:create) do |routine_flow, _|
-        routine_flow.start
-        routine_flow.take_next_flow_step
-        routine_flow.take_next_flow_step
+        routine_flow_stepper = RoutineFlowStepper.new(routine_flow)
+        routine_flow_stepper.start
+        routine_flow_stepper.take_next_flow_step
+        routine_flow_stepper.take_next_flow_step
       end
     end
   end
