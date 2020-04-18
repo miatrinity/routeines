@@ -8,26 +8,26 @@ RSpec.describe RoutineFlowStepper do
       expect(flow_step_titles_for(routine_flow)).to eql(step_titles_for(routine))
     end
 
-    # it 'has started_at set to current time' do
-    #   freeze_time
+    it 'has started_at set to current time' do
+      freeze_time
 
-    #   routine, routine_flow = start_routine_flow
+      _, routine_flow = start_routine_flow
 
-    #   expect(routine_flow.started_at).to eq(Time.current)
-    # end
+      expect(routine_flow.started_at).to eq(Time.current)
+    end
 
 
-    # it 'activates first flow step' do
-    #   _, routine_flow = start_routine_flow
+    it 'activates first flow step' do
+      _, routine_flow = start_routine_flow
 
-    #   expect(routine_flow.flow_steps.first.status).to eql('active')
-    # end
+      expect(routine_flow.flow_steps.first.status).to eql('active')
+    end
   end
 
   private
 
   def flow_step_titles_for(routine_flow)
-    routine_flow.flow_steps.map { |flow_step| flow_step.title }
+    routine_flow.flow_steps.map(&:title)
   end
 
   def step_titles_for(routine)
