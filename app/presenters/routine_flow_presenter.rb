@@ -1,25 +1,16 @@
-class RoutineFlowPresenter
-  include ViewCompatibilityPack
+class RoutineFlowPresenter < BasePresenter
+  include Buttons
 
-  delegate :routine, to: :routine_flow, prefix: false
+  presents :routine_flow
+  delegate :routine, :title, to: :routine_flow, prefix: false
 
-  def initialize(routine_flow)
-    @routine_flow = routine_flow
-  end
-
-  def routine_flow_title
-    routine_flow.title
+  def completed_at
+    formatted_date_time = routine_flow.completed_at.to_s(:long_ordinal)
+    "completed on #{formatted_date_time}"
   end
 
   def remaining_flow_steps
     "<strong>#{upcoming_flow_step_count}</strong> #{pluralized_flow_step} remaining!".html_safe
-  end
-
-  def finish_flow_step_button
-    link_to 'Finish',
-            finish_step_path,
-            method: http_method,
-            class: 'button is-large is-info is-fullwidth'
   end
 
   def active_flow_step_title
@@ -35,8 +26,6 @@ class RoutineFlowPresenter
   end
 
   private
-
-  attr_reader :routine_flow
 
   def upcoming_flow_step_count
     routine_flow.flow_steps.upcoming.size + 1
@@ -55,7 +44,7 @@ class RoutineFlowPresenter
   end
 
   def finish_step_path
-    url_helpers.routine_routine_flow_path(routine, routine_flow)
+    routine_routine_flow_path(routine, routine_flow)
   end
 
   def active_flow_step
