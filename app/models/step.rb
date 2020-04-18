@@ -10,8 +10,4 @@ class Step < ApplicationRecord
   has_many :flow_steps
 
   validates_presence_of :title
-
-  def last?
-    self.next.blank?
-  end
 end

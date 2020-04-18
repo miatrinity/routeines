@@ -99,4 +99,8 @@ module Chainable
   def previous
     routine.steps.find_by(next: self)
   end
+
+  def last?
+    self.next.blank?
+  end
 end
