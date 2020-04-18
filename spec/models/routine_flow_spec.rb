@@ -70,12 +70,11 @@ RSpec.describe RoutineFlow do
       finish_time = start_time + 7.minutes
 
       travel_to start_time
-
       routine, routine_flow = start_routine_flow
 
-      travel_to finish_time
-
       (routine.steps.count-1).times { routine_flow.take_next_flow_step }
+
+      travel_to finish_time
       routine_flow.complete_routine_flow
 
       expect(routine_flow.time_to_complete).to eq(7.minutes)
