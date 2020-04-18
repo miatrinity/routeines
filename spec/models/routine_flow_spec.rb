@@ -9,7 +9,7 @@ RSpec.describe RoutineFlow do
     end
   end
 
-  describe '#start!' do
+  describe '#start' do
     it "clones associated routine's steps as flow_steps" do
       routine, routine_flow = start_routine_flow
 
@@ -32,23 +32,23 @@ RSpec.describe RoutineFlow do
     end
   end
 
-  describe '#take_next_flow_step!' do
+  describe '#take_next_flow_step' do
     it 'should complete current step and activate next step' do
       _, routine_flow = start_routine_flow
 
-      routine_flow.take_next_flow_step!
+      routine_flow.take_next_flow_step
 
       expect(routine_flow.flow_steps.first).to be_complete
       expect(routine_flow.flow_steps.second).to be_active
     end
   end
 
-  describe '#complete_routine_flow!' do
+  describe '#complete_routine_flow' do
     it 'should complete routine flow if step is the last step' do
       routine, routine_flow = start_routine_flow
 
-      (routine.steps.count-1).times { routine_flow.take_next_flow_step! }
-      routine_flow.complete_routine_flow!
+      (routine.steps.count-1).times { routine_flow.take_next_flow_step }
+      routine_flow.complete_routine_flow
 
       expect(routine_flow).to be_complete
     end
@@ -57,8 +57,8 @@ RSpec.describe RoutineFlow do
       freeze_time
       routine, routine_flow = start_routine_flow
 
-      (routine.steps.count-1).times { routine_flow.take_next_flow_step! }
-      routine_flow.complete_routine_flow!
+      (routine.steps.count-1).times { routine_flow.take_next_flow_step }
+      routine_flow.complete_routine_flow
 
       expect(routine_flow.completed_at).to eq(Time.current)
     end
@@ -75,8 +75,8 @@ RSpec.describe RoutineFlow do
 
       travel_to finish_time
 
-      (routine.steps.count-1).times { routine_flow.take_next_flow_step! }
-      routine_flow.complete_routine_flow!
+      (routine.steps.count-1).times { routine_flow.take_next_flow_step }
+      routine_flow.complete_routine_flow
 
       expect(routine_flow.time_to_complete).to eq(7.minutes)
     end
@@ -102,7 +102,7 @@ RSpec.describe RoutineFlow do
 
     routine_flow = RoutineFlow.create(routine: routine)
 
-    routine_flow.start!
+    routine_flow.start
 
     [routine, routine_flow]
   end

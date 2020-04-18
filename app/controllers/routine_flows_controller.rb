@@ -54,19 +54,19 @@ class RoutineFlowsController < ApplicationController
   end
 
   def start_routine_flow
-    @routine_flow.start!
+    @routine_flow.start
 
     redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end
 
   def take_next_routine_flow_step
-    @routine_flow.take_next_flow_step!
+    @routine_flow.take_next_flow_step
 
     redirect_to routine_routine_flow_path(@routine, @routine_flow)
   end
 
   def complete_routine_flow
-    @routine_flow.complete_routine_flow!
+    @routine_flow.complete_routine_flow
 
     redirect_to routine_routine_flow_report_path(@routine, @routine_flow),
                 notice: "#{@routine.title} was successfully finished."
