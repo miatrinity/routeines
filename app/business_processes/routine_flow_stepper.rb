@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nodoc:
 class RoutineFlowStepper
   def initialize(routine_flow)
     @routine_flow = routine_flow

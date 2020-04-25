@@ -16,7 +16,6 @@ RSpec.describe RoutineFlowStepper do
       expect(routine_flow.started_at).to eq(Time.current)
     end
 
-
     it 'activates first flow step' do
       _, routine_flow = start_routine_flow
 

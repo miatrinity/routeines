@@ -1,0 +1,24 @@
+AllCops:
+  Exclude:
+    - 'db/migrate/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+Layout/LineLength:
+  Max: 99
+  IgnoredPatterns: ['(\A|\s)#']
+  Exclude:
+    - 'spec/**/*'
+Style/AndOr:
+  EnforcedStyle: conditionals
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+  Exclude:
+    - 'spec/**/*'
+Naming/MemoizedInstanceVariableName:
+  Exclude:
+    - 'app/controllers/**/*'
+  EnforcedStyleForLeadingUnderscores: optional

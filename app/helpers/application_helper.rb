@@ -11,13 +11,11 @@ module ApplicationHelper
   end
 
   def present(object)
+    raise "calling present() without a block doesn't make sense!" unless block_given?
+
     klass ||= "#{object.class}Presenter".constantize
     presenter = klass.new(object, self)
 
-    if block_given?
-      yield presenter
-    else
-      raise "calling present() without a block doesn't make sense!"
-    end
+    yield presenter
   end
 end

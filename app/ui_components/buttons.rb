@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# :nodoc:
 module Buttons
   def reports_button
     link_to 'Reports',

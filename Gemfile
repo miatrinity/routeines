@@ -25,6 +25,7 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'overcommit'
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-commands-rspec'

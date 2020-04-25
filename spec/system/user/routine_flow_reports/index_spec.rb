@@ -11,4 +11,3 @@ RSpec.describe 'User visits routine flow reports page' do
     expect(page).to have_css('#complete-routine-flows div[id*=routine_flow_]', count: 1)
   end
 end
-
