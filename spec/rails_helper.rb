@@ -43,6 +43,22 @@ end
 require 'action_dispatch/system_testing/server'
 ActionDispatch::SystemTesting::Server.silence_puma = true
 
+options = Selenium::WebDriver::Chrome::Options.new
+options.add_preference(:download, prompt_for_download: false,
+                                  default_directory: '/tmp/downloads')
+
+options.add_preference(:browser, set_download_behavior: { behavior: 'allow' })
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+Capybara.register_driver :headless_chrome do |app|
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
 
 RSpec.configure do |config|
   config.include SystemTests, type: :system
@@ -52,7 +68,7 @@ RSpec.configure do |config|
     example = RSpec.current_example
 
     driver = if example.metadata[:js]
-               ENV['SHOW_BROWSER'] ? :selenium_chrome : :selenium_chrome_headless
+               ENV['SHOW_BROWSER'] ? :chrome : :headless_chrome
              else
                :rack_test
              end

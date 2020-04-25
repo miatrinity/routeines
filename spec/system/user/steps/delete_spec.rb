@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'User deletes step' do
-  it 'successfully', js: true do
+  xit 'successfully', js: true do
     routine = create(:routine, :with_steps)
     step = routine.reload.steps.sample
 

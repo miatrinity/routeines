@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.1'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jbuilder', '~> 2.7'
@@ -33,12 +33,11 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'database_cleaner'
-  gem 'selenium-webdriver'
+  gem 'capybara', '~> 3.32', '>= 3.32.1'
+  gem 'selenium-webdriver', '~> 4.0.0.alpha5'
   gem 'shoulda-matchers', '~> 4.2'
   gem 'simplecov', '~> 0.18.5', require: false
-  gem 'webdrivers'
+  gem 'webdrivers', '~> 4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'User deletes routine' do
-  it 'successfully', js: true do
+  xit 'successfully', js: true do
     routine = create(:routine, :with_steps)
 
     login_as routine.user
