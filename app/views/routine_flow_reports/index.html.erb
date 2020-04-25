@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <nav class="breadcrumb">
+        <ul>
+          <li>
+            <%= link_to "Routines", routines_path %>
+          </li>
+          <li>
+            <%= link_to "#{@routine.title} Steps", routine_steps_path(@routine) %>
+          </li>
+          <li class="is-active">
+            <a href="#"><%= @routine.title %> Reports</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h1 class="title "><%= @routine.title %> - Reports</h1>
+
+      <div id="complete-routine-flows">
+        <%= render @routine_flows, routine: @routine %>
+      </div>
+
+    </div>
+  </div>
+</section>

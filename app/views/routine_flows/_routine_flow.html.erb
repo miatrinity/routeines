@@ -1,0 +1,26 @@
+<div class="box" id="<%= dom_id(routine_flow) %>">
+  <article class="media" style="align-items: center;">
+    <div class="media-content">
+      <div class="content">
+        <div class="level" style="align-items: baseline;">
+          <div class="level-left">
+            <span class="is-size-4" style= "margin-right: 8px;">
+              🏆 #<%= @routine_flow_count - routine_flow_counter %>
+            </span>
+          </div>
+          <div>
+            <span class="is-size-4">
+              📅 <%= routine_flow.completed_at.to_s(:long_ordinal) %>
+            </span>
+          </div>
+          <div class="level-right">
+            <span class="is-size-4">
+              <% parts = routine_flow.time_to_complete.parts %>
+              ⏱️ <%= parts[:hours] %>h <%= parts[:minutes] %>m <%= parts[:seconds].ceil %>s
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

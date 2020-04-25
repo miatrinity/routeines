@@ -9,4 +9,15 @@ module ApplicationHelper
       'No file chosen'
     end
   end
+
+  def present(object)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+
+    if block_given?
+      yield presenter
+    else
+      raise "calling present() without a block doesn't make sense!"
+    end
+  end
 end

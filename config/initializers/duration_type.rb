@@ -11,11 +11,11 @@ class DurationType < ActiveRecord::Type::String
   def cast(value)
     return value if value.blank? || value.is_a?(ActiveSupport::Duration)
 
-    ActiveSupport::Duration.build(value)
+    ActiveSupport::Duration.parse(value)
   end
 
   def serialize(duration)
-    duration ? duration.iso8601 : nil
+    duration.presence&.iso8601
   end
 end
 

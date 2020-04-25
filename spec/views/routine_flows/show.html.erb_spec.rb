@@ -18,7 +18,7 @@ RSpec.describe 'routine_flows/show' do
   def verify_routine_flow_progress(m_out_of_n_steps_completed, complete:)
     routine_flow = create(:routine_flow, m_out_of_n_steps_completed)
     assign(:routine_flow, routine_flow)
-    assign(:presenter, RoutineFlowPresenter.new(routine_flow))
+    assign(:presenter, RoutineFlowPresenter.new(routine_flow, view))
 
     render
 
