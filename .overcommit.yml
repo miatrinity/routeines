@@ -32,6 +32,13 @@ PreCommit:
 
   RuboCop:
     enabled: true
-    
+
   Fasterer:
+    enabled: true
+
+PrePush:
+  Brakeman:
+    enabled: true
+
+  RailsBestPractices:
     enabled: true
