@@ -15,10 +15,11 @@ class BasePresenter
 
   private
 
+  # rubocop:disable Style/MethodMissingSuper:
   def method_missing(*args, &block)
     @template.send(*args, &block)
-    super
   end
+  # rubocop:enable Style/MethodMissingSuper:
 
   def respond_to_missing?(*args, &block)
     super
