@@ -1,4 +1,9 @@
 <div id="flashes">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if notice.present? %>
+    <p class="notification is-success"><%= notice %></p>
+  <% end %>
+  <% if alert.present? %>
+    <p class="notification is-danger"><%= alert %></p>
+  <% end %>
 </div>
+<br>
