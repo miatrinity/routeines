@@ -8,7 +8,7 @@ RSpec.describe 'User edits routine' do
 
     visit routines_path
 
-    click_on 'Edit'
+    click_on 'Edit Routine'
 
     fill_in 'routine[title]', with: "I'm an edited routine"
     attach_file 'routine[avatar]', Rails.root.join('spec', 'fixtures', 'edited_routine.png')

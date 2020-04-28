@@ -36,9 +36,6 @@ PreCommit:
   Fasterer:
     enabled: true
 
-  RailsBestPractices:
-    enabled: true
-
 PrePush:
   Brakeman:
     enabled: true

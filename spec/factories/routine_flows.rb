@@ -2,6 +2,13 @@
 
 FactoryBot.define do
   factory :routine_flow do
+    trait :no_steps do
+      before(:create) do |routine_flow, _|
+        routine = create(:routine)
+        routine.routine_flows << routine_flow
+      end
+    end
+
     trait :complete do
       transient do
         overridden_time_to_complete { -1 }

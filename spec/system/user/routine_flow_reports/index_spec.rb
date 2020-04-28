@@ -3,7 +3,7 @@
 RSpec.describe 'User visits routine flow reports page' do
   it 'successfully' do
     routine_flow = create(:routine_flow, :complete)
-    login_as routine_flow.routine.user
+    login_as routine_flow.user
     visit root_path
 
     click_on 'Reports'
