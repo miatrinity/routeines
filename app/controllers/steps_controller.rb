@@ -4,6 +4,9 @@
 class StepsController < ApplicationController
   def index
     load_steps
+    return if @steps.any?
+
+    flash.now[:notice] = "Feed me some steps. I can't start an empty routine flow!"
   end
 
   def new

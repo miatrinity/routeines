@@ -1,28 +1,21 @@
-<div class="column is-6-tablet is-4-desktop is-3-widescreen" id=<%= dom_id(routine) %> >
-  <article class="box has-text-centered card">
-    <div class="box">
-      <%= link_to routine_steps_path(routine) do %>
-        <%= image_tag routine.avatar, id: "#{dom_id(routine)}-avatar" %>
-      <% end %>
-    </div>
-    <p class="title is-3 is-spaced is-marginless is-capitalized is-centered">
-      <%= link_to routine.title, routine_steps_path(routine), id: "#{dom_id(routine)}-title" %>
-    </p>
-    <br>
-    <div>
-      <%= button_to 'Start Routine', routine_routine_flows_path(routine), id: "#{dom_id(routine)}-start", class: "button is-large is-fullwidth is-info", style: "margin-bottom: 10px;"%>
-    </div>
-    <div>
-      <%= link_to 'Reports', routine_routine_flow_reports_path(routine), id: "#{dom_id(routine)}-reports", class: "button is-large is-fullwidth is-info is-light" %>
-    </div>
-    <br>
-    <div class="content is-small">
-      <%= link_to "Add Steps", routine_steps_path(routine) %>
-      <span>·</span>
-      <%= link_to "Edit Routine", edit_routine_path(routine) %>
-      <span>·</span>
-      <%= link_to "Delete", routine, method: :delete, data: { confirm: "Are you sure you want to remove #{routine.title} from Routines? "} %>
-      <p></p>
-    </div>
-  </article>
-</div>
+<% present routine do |routine_presenter| %>
+  <div class="column is-6-tablet is-4-desktop is-3-widescreen" id=<%= dom_id(routine) %> >
+    <article class="box has-text-centered card">
+      <div class="box">
+        <%= routine_presenter.add_steps_image_link %>
+      </div>
+      <p class="title is-3 is-spaced is-marginless is-capitalized is-centered has-text-grey">
+        <%= routine.title %>
+      </p>
+      <br>
+      <div>
+        <%= routine_presenter.start_routine_or_go_to_add_steps_button %>
+      </div>
+      <div>
+        <%= routine_presenter.reports_button(extra_classes: 'is-light') %>
+      </div>
+      <br>
+      <%= routine_presenter.secondary_links %>
+    </article>
+  </div>
+<% end %>

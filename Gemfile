@@ -28,7 +28,6 @@ group :development do
   gem 'fasterer', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit'
-  gem 'rails_best_practices', require: false
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-commands-rspec'

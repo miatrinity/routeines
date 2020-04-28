@@ -9,5 +9,5 @@ class RoutineFlow < ApplicationRecord
   belongs_to :routine
   has_many :flow_steps, dependent: :destroy
 
-  delegate :title, to: :routine, prefix: false
+  delegate :title, :user, to: :routine, prefix: false
 end
